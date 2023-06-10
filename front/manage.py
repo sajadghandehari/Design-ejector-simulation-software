@@ -2,12 +2,13 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import sys
+import pandas
 
 from PyQt5.uic import loadUiType
 
-ui, _ = loadUiType('Apps.ui')
-create_user, _ = loadUiType('Createusername.ui')
-login, _ = loadUiType('Login.ui')
+ui, _ = loadUiType('front/Apps.ui')
+create_user, _ = loadUiType('front/Createusername.ui')
+login, _ = loadUiType('front/Login.ui')
 
 
 class Login(QMainWindow, login):
@@ -16,18 +17,32 @@ class Login(QMainWindow, login):
         self.setupUi(self)
 
         self.setWindowTitle("Login page")
-        self.setWindowIcon(QIcon('python.png'))
+        self.setWindowIcon(QIcon('front/python.png'))
 
         self.Handel_Buttons()
 
     def handel_login(self):
+
         username = self.username.text()
         password = self.password.text()
-        print(username, password)
+
+        Users = pandas.read_excel(
+            'back/User_Information.xlsx', header=None).values
+
+        for user in Users[1:]:
+            Username = user[0]
+            Password = user[1]
+            if Username == username and str(Password) == password:
+                print('OK')
+                self.login()
+            else:
+                self.label_2.setText(
+                    "Your Username or Password is not correct !")
+                self.label_2.setStyleSheet("color: red; font-size: 12px;")
 
     def Handel_Buttons(self):
 
-        self.LoginButton.clicked.connect(self.login)
+        self.LoginButton.clicked.connect(self.handel_login)
         self.CreateButton.clicked.connect(self.create_user)
 
     def login(self):
@@ -49,13 +64,56 @@ class CreateUser(QMainWindow, create_user):
         self.setupUi(self)
 
         self.setWindowTitle("Create User page")
-        self.setWindowIcon(QIcon('python.png'))
+        self.setWindowIcon(QIcon('front/python.png'))
 
         self.Handel_Buttons()
 
     def Handel_Buttons(self):
 
-        self.CreateButton.clicked.connect(self.create_user)
+        self.CreateButton.clicked.connect(self.confing_info)
+
+    def confing_info(self):
+
+        username = self.create_username.text()
+        password = self.create_password.text()
+        confirm_password = self.confir_password.text()
+        gmail = self.create_gmail.text()
+        user_from_db = []
+
+        Users = pandas.read_excel(
+            'back/User_Information.xlsx', header=None).values
+
+        for user in Users[1:]:
+            user_from_db.append(user[0])
+
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         Qt.red)  # Set the text color to red
+        self.statusBar().setPalette(palette)
+
+        if username in user_from_db:
+            self.statusBar().showMessage('This username has already been used!')
+        elif len(password) < 8:
+            self.statusBar().showMessage('Your password must be more than 8 character!')
+        elif password != confirm_password:
+            self.statusBar().showMessage('Your password and confirm Password must be equal!')
+        elif '@gmail.com' not in gmail:
+            self.statusBar().showMessage('You must enter valid email address!')
+        else:
+
+            df = pandas.read_excel('back/User_Information.xlsx', header=None)
+
+            data = [
+                [username, password, gmail]
+            ]
+
+            new_df = df.append(pandas.DataFrame(data), ignore_index=True)
+
+            # Save the updated DataFrame to the Excel file
+            new_df.to_excel('back/User_Information.xlsx',
+                            header=None, index=False)
+
+            self.create_user()
 
     def create_user(self):
         self.window = MainApp()
