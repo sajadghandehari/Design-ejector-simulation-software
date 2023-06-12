@@ -101,7 +101,7 @@ class Ui_mainwindow(object):
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
-        self.tableWidget.horizontalHeader().setVisible(False)
+        self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(449)
         self.tableWidget.horizontalHeader().setMinimumSectionSize(49)
@@ -271,14 +271,14 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_3.setRowCount(12)
+        self.tableWidget_3.setRowCount(0)
         self.tableWidget_3.setObjectName("tableWidget_3")
         self.tableWidget_3.setColumnCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_3.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_3.setHorizontalHeaderItem(1, item)
-        self.tableWidget_3.horizontalHeader().setDefaultSectionSize(374)
+        self.tableWidget_3.horizontalHeader().setDefaultSectionSize(400)
         self.pushButton5_2 = QtWidgets.QPushButton(self.tab_4)
         self.pushButton5_2.setGeometry(QtCore.QRect(760, 460, 160, 28))
         self.pushButton5_2.setStyleSheet("QPushButton {\n"
@@ -335,14 +335,14 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_4.setRowCount(12)
+        self.tableWidget_4.setRowCount(0)
         self.tableWidget_4.setObjectName("tableWidget_4")
         self.tableWidget_4.setColumnCount(2)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_4.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget_4.setHorizontalHeaderItem(1, item)
-        self.tableWidget_4.horizontalHeader().setDefaultSectionSize(374)
+        self.tableWidget_4.horizontalHeader().setDefaultSectionSize(400)
         self.pushButton5_3 = QtWidgets.QPushButton(self.tab_5)
         self.pushButton5_3.setGeometry(QtCore.QRect(760, 460, 160, 28))
         self.pushButton5_3.setStyleSheet("QPushButton {\n"
@@ -816,8 +816,8 @@ class Ui_mainwindow(object):
         mainwindow.setMenuBar(self.menubar)
 
         self.retranslateUi(mainwindow)
-        self.tabWidget.setCurrentIndex(1)
-        self.tabWidget_2.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, mainwindow):
@@ -859,9 +859,9 @@ class Ui_mainwindow(object):
         self.label_37.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), _translate("mainwindow", "Specific heat-gas"))
         item = self.tableWidget_4.horizontalHeaderItem(0)
-        item.setText(_translate("mainwindow", "Specific Enthalpy"))
-        item = self.tableWidget_4.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Temperature (R)"))
+        item = self.tableWidget_4.horizontalHeaderItem(1)
+        item.setText(_translate("mainwindow", "Specific Enthalpy"))
         self.pushButton5_3.setText(_translate("mainwindow", "Next >"))
         self.label_38.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("mainwindow", "Enthalpy-gas"))

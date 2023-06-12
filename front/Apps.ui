@@ -118,7 +118,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -198,7 +198,7 @@ QHeaderView::section {
        <number>2</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>false</bool>
+       <bool>true</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -355,7 +355,7 @@ color: #000000;</string>
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -550,23 +550,11 @@ QHeaderView::section {
 </string>
         </property>
         <property name="rowCount">
-         <number>12</number>
+         <number>0</number>
         </property>
         <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>374</number>
+         <number>400</number>
         </attribute>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
         <column>
          <property name="text">
           <string>Temperature (R)</string>
@@ -677,31 +665,19 @@ QHeaderView::section {
 </string>
         </property>
         <property name="rowCount">
-         <number>12</number>
+         <number>0</number>
         </property>
         <attribute name="horizontalHeaderDefaultSectionSize">
-         <number>374</number>
+         <number>400</number>
         </attribute>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
-        <row/>
         <column>
          <property name="text">
-          <string>Specific Enthalpy</string>
+          <string>Temperature (R)</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Temperature (R)</string>
+          <string>Specific Enthalpy</string>
          </property>
         </column>
        </widget>

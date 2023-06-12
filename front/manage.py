@@ -6,6 +6,7 @@ import pandas
 
 from PyQt5.uic import loadUiType
 from themes.Theme import *
+from simulation.simulation_data import *
 
 ui, _ = loadUiType('front/Apps.ui')
 create_user, _ = loadUiType('front/Createusername.ui')
@@ -154,51 +155,7 @@ class MainApp(QMainWindow, ui):
             lambda: self.set_row('C'))
 
         self.properties_table.cellChanged.connect(
-            self.table_propertise_get_data)
-
-    def table_propertise_get_data(self):
-
-        # get the number of rows and columns in the table
-        num_rows = self.properties_table.rowCount()
-        num_cols = self.properties_table.columnCount()
-
-        # create an empty list to store the table data
-        table_data = []
-        palette = self.statusBar().palette()
-        palette.setColor(self.statusBar().foregroundRole(),
-                         Qt.red)  # Set the text color to red
-        self.statusBar().setPalette(palette)
-
-        # iterate through each cell in the table and append its text to the list
-        for row in range(num_rows):
-            current_row = []
-            for col in range(num_cols):
-                item = self.properties_table.item(row, col)
-                current_row.append(item.text() if item is not None else "")
-            table_data.append(current_row)
-
-        self.statusBar().showMessage(f'')
-
-        for cell in table_data:
-
-            # print(int(cell[0]))
-            if cell[0].isdigit():
-                self.statusBar().showMessage(
-                    f'in row {table_data.index(cell)+1} name of component cannot be integer!')
-                # item = self.properties_table.item(table_data.index(cell), 0)
-                # item.setText("")
-
-            if '' not in cell:
-                # print(table_data)
-                self.propertice_next.setStyleSheet(
-                    "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
-                self.propertice_next.setEnabled(False)
-
-            else:
-                # print(table_data)
-                self.propertice_next.setStyleSheet(
-                    "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
-                self.propertice_next.setEnabled(True)
+            lambda: table_propertise_get_data(self))
 
     def History_Tab(self):
         self.tabWidget.setCurrentIndex(0)
@@ -218,8 +175,6 @@ class MainApp(QMainWindow, ui):
         if table == 'C':
             row_count = self.enthalpy_gas_input.text()
             self.tableWidget_4.setRowCount(int(row_count))
-
-        # self.properties_table.insertRow(2)
 
     def setting_Tab(self):
         self.tabWidget.setCurrentIndex(2)
