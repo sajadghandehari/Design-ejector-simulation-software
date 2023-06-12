@@ -147,13 +147,14 @@ class MainApp(QMainWindow, ui):
         self.Earth.clicked.connect(self.Earth_theme)
 
         self.gas_propertice_input.returnPressed.connect(
-            self.table_propertise_get_data_set_row)
+            lambda: self.set_row('A'))
+        self.specific_heat_input.returnPressed.connect(
+            lambda: self.set_row('B'))
+        self.enthalpy_gas_input.returnPressed.connect(
+            lambda: self.set_row('C'))
+
         self.properties_table.cellChanged.connect(
             self.table_propertise_get_data)
-
-        # self.pushButton5.clicked.connect(0,self.tab)
-        # for i in range(5):
-        #     self.tabWidget_2.setTabEnabled(i+1, False)
 
     def table_propertise_get_data(self):
 
@@ -163,6 +164,10 @@ class MainApp(QMainWindow, ui):
 
         # create an empty list to store the table data
         table_data = []
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         Qt.red)  # Set the text color to red
+        self.statusBar().setPalette(palette)
 
         # iterate through each cell in the table and append its text to the list
         for row in range(num_rows):
@@ -172,15 +177,28 @@ class MainApp(QMainWindow, ui):
                 current_row.append(item.text() if item is not None else "")
             table_data.append(current_row)
 
+        self.statusBar().showMessage(f'')
+
         for cell in table_data:
 
+            # print(int(cell[0]))
+            if cell[0].isdigit():
+                self.statusBar().showMessage(
+                    f'in row {table_data.index(cell)+1} name of component cannot be integer!')
+                # item = self.properties_table.item(table_data.index(cell), 0)
+                # item.setText("")
+
             if '' not in cell:
-                print(table_data)
+                # print(table_data)
                 self.propertice_next.setStyleSheet(
-                    "background-color:#778899; color:#00FF7F ;border-radius:6px ;border-style:solid;")
+                    "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
+                self.propertice_next.setEnabled(False)
+
             else:
+                # print(table_data)
                 self.propertice_next.setStyleSheet(
-                    "background-color:#778899; color:#FF0000 ;border-radius:6px ;border-style:solid;")
+                    "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
+                self.propertice_next.setEnabled(True)
 
     def History_Tab(self):
         self.tabWidget.setCurrentIndex(0)
@@ -188,13 +206,19 @@ class MainApp(QMainWindow, ui):
     def Simulation_Tab(self):
         self.tabWidget.setCurrentIndex(1)
         text = self.gas_propertice_input.text()
-        print(text)
 
-    def table_propertise_get_data_set_row(self):
-        print('OK')
-        row_count = self.gas_propertice_input.text()
+    def set_row(self, table):
 
-        self.properties_table.setRowCount(int(row_count))
+        if table == 'A':
+            row_count = self.gas_propertice_input.text()
+            self.properties_table.setRowCount(int(row_count))
+        if table == 'B':
+            row_count = self.specific_heat_input.text()
+            self.tableWidget_3.setRowCount(int(row_count))
+        if table == 'C':
+            row_count = self.enthalpy_gas_input.text()
+            self.tableWidget_4.setRowCount(int(row_count))
+
         # self.properties_table.insertRow(2)
 
     def setting_Tab(self):

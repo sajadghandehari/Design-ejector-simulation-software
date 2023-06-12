@@ -118,7 +118,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -198,7 +198,7 @@ QHeaderView::section {
        <number>2</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -355,7 +355,7 @@ color: #000000;</string>
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -468,6 +468,11 @@ QHeaderView::section {
         </attribute>
         <column>
          <property name="text">
+          <string>Name</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
           <string>Molecular Weight</string>
          </property>
         </column>
@@ -511,9 +516,9 @@ QHeaderView::section {
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>80</y>
+          <y>110</y>
           <width>800</width>
-          <height>350</height>
+          <height>331</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -564,12 +569,12 @@ QHeaderView::section {
         <row/>
         <column>
          <property name="text">
-          <string>Specific Heat</string>
+          <string>Temperature (R)</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Temperature (R)</string>
+          <string>Specific Heat</string>
          </property>
         </column>
        </widget>
@@ -577,7 +582,7 @@ QHeaderView::section {
         <property name="geometry">
          <rect>
           <x>760</x>
-          <y>450</y>
+          <y>460</y>
           <width>160</width>
           <height>28</height>
          </rect>
@@ -596,6 +601,39 @@ QHeaderView::section {
          <string>Next &gt;</string>
         </property>
        </widget>
+       <widget class="QLineEdit" name="specific_heat_input">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>40</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 8pt &quot;Calibri (Body)&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius:5px;
+
+
+
+</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_37">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>40</y>
+          <width>141</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>number of row :</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
@@ -605,9 +643,9 @@ QHeaderView::section {
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>80</y>
+          <y>110</y>
           <width>800</width>
-          <height>350</height>
+          <height>330</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -671,7 +709,7 @@ QHeaderView::section {
         <property name="geometry">
          <rect>
           <x>760</x>
-          <y>450</y>
+          <y>460</y>
           <width>160</width>
           <height>28</height>
          </rect>
@@ -688,6 +726,39 @@ QHeaderView::section {
         </property>
         <property name="text">
          <string>Next &gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_38">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>40</y>
+          <width>141</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>number of row :</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="enthalpy_gas_input">
+        <property name="geometry">
+         <rect>
+          <x>310</x>
+          <y>40</y>
+          <width>100</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 8pt &quot;Calibri (Body)&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius:5px;
+
+
+
+</string>
         </property>
        </widget>
       </widget>

@@ -69,10 +69,15 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
 
     self.gas_propertice_input.setStyleSheet(
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+    self.specific_heat_input.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+    self.enthalpy_gas_input.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+
     if color_D == 'rgb(248, 240, 223)':
         color_D = 'rgb(34, 40, 49)'
 
-    label_ranges = [(2, 10), (18, 23)]
+    label_ranges = [(2, 10), (18, 23), (37, 39)]
     for start, end in label_ranges:
         for i in range(start, end):
             label = getattr(self, f"label_{i}")
