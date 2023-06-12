@@ -5,6 +5,7 @@ import sys
 import pandas
 
 from PyQt5.uic import loadUiType
+from themes.Theme import *
 
 ui, _ = loadUiType('front/Apps.ui')
 create_user, _ = loadUiType('front/Createusername.ui')
@@ -129,7 +130,8 @@ class MainApp(QMainWindow, ui):
         self.Handel_UI_Changes()
         self.Handel_Buttons()
         self.setWindowTitle("Ejector Simulation App")
-        self.setWindowIcon(QIcon('python.png'))
+        self.setWindowIcon(QIcon('front/python.png'))
+        self.calasic_theme()
 
     def Handel_UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
@@ -142,6 +144,8 @@ class MainApp(QMainWindow, ui):
         self.classic.clicked.connect(self.calasic_theme)
         self.dark_blue.clicked.connect(self.dark_blue_theme)
         self.mnjaromix.clicked.connect(self.mnjaromix_theme)
+        self.Earth.clicked.connect(self.Earth_theme)
+
         self.gas_propertice_input.returnPressed.connect(
             self.table_propertise_get_data_set_row)
         self.properties_table.cellChanged.connect(
@@ -197,19 +201,49 @@ class MainApp(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(2)
 
     def calasic_theme(self):
-        style = open('themes/classic.css', 'r')
-        styles = style.read()
-        self.setStyleSheet(styles)
+
+        color_A = 'rgb(254, 251, 243)'
+        color_B = 'rgb(248, 240, 223)'
+        color_C = 'rgb(121, 180, 183)'
+        color_D = 'rgb(34, 40, 49)'
+
+        setting_page_theme(self, color_A, color_B, color_C, color_D)
+        Simulation_page_theme(self, color_A, color_B, color_C, color_B)
+        History_page_theme(self, color_A, color_B, color_C, color_B)
+
+    def Earth_theme(self):
+
+        # earth
+        color_A = 'rgb(64, 81, 59)'
+        color_B = 'rgb(157, 192, 139)'
+        color_C = 'rgb(96, 153, 102)'
+        color_D = 'rgb(237, 241, 214)'
+
+        setting_page_theme(self, color_A, color_B, color_C, color_D)
+        Simulation_page_theme(self, color_A, color_B, color_C, color_D)
+        History_page_theme(self, color_A, color_B, color_C, color_D)
 
     def mnjaromix_theme(self):
-        style = open('themes/ManjaroMix.css', 'r')
-        styles = style.read()
-        self.setStyleSheet(styles)
+
+        color_A = 'rgb(6, 41, 37)'
+        color_B = 'rgb(4, 74, 66)'
+        color_C = 'rgb(58, 145, 136)'
+        color_D = 'rgb(184, 225, 221)'
+
+        setting_page_theme(self, color_A, color_B, color_C, color_D)
+        Simulation_page_theme(self, color_A, color_B, color_C, color_D)
+        History_page_theme(self, color_A, color_B, color_C, color_D)
 
     def dark_blue_theme(self):
-        style = open('themes/dark_blue.css', 'r')
-        styles = style.read()
-        self.setStyleSheet(styles)
+
+        color_A = 'rgb(35, 41, 49)'
+        color_B = 'rgb(57, 62, 70)'
+        color_C = 'rgb(78, 204, 163)'
+        color_D = 'rgb(238, 238, 238)'
+
+        setting_page_theme(self, color_A, color_B, color_C, color_D)
+        Simulation_page_theme(self, color_A, color_B, color_C, color_D)
+        History_page_theme(self, color_A, color_B, color_C, color_D)
 
     def tab(self):
         self.tabWidget.setTabEnabled(1, False)
@@ -218,7 +252,7 @@ class MainApp(QMainWindow, ui):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = Login()
+    window = MainApp()
     window.show()
     app.exec_()
 
