@@ -49,7 +49,7 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
         }}
     """)
 
-    table_widgets = [self.tableWidget_3, self.tableWidget_4,
+    table_widgets = [self.specific_heat_table, self.enthalpy_gas_table,
                      self.tableWidget_5, self.tableWidget_6]
 
     for table_widget in table_widgets:

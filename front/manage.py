@@ -133,6 +133,7 @@ class MainApp(QMainWindow, ui):
         self.setWindowTitle("Ejector Simulation App")
         self.setWindowIcon(QIcon('front/python.png'))
         self.calasic_theme()
+        self.writer = pd.ExcelWriter('back/output2.xls')
 
     def Handel_UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
@@ -146,6 +147,15 @@ class MainApp(QMainWindow, ui):
         self.dark_blue.clicked.connect(self.dark_blue_theme)
         self.mnjaromix.clicked.connect(self.mnjaromix_theme)
         self.Earth.clicked.connect(self.Earth_theme)
+        self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
+        self.propertice_next.setEnabled(False)
+
+        self.specific_heat_next.clicked.connect(
+            lambda: self.tabWidget_2.setCurrentIndex(2))
+        self.specific_heat_next.setEnabled(False)
+        self.enthalpy_gas_next.clicked.connect(
+            lambda: self.tabWidget_2.setCurrentIndex(3))
+        self.enthalpy_gas_next.setEnabled(False)
 
         self.gas_propertice_input.returnPressed.connect(
             lambda: self.set_row('A'))
@@ -156,6 +166,16 @@ class MainApp(QMainWindow, ui):
 
         self.properties_table.cellChanged.connect(
             lambda: table_propertise_get_data(self))
+
+        self.specific_heat_table.cellChanged.connect(
+            lambda: specific_heat_gas_get_data(self))
+
+        self.enthalpy_gas_table.cellChanged.connect(
+            lambda: enthalpy_gas_get_data(self))
+
+    def specific_heat_gas_Tab(self):
+
+        self.tabWidget_2.setCurrentIndex(1)
 
     def History_Tab(self):
         self.tabWidget.setCurrentIndex(0)
@@ -171,10 +191,10 @@ class MainApp(QMainWindow, ui):
             self.properties_table.setRowCount(int(row_count))
         if table == 'B':
             row_count = self.specific_heat_input.text()
-            self.tableWidget_3.setRowCount(int(row_count))
+            self.specific_heat_table.setRowCount(int(row_count))
         if table == 'C':
             row_count = self.enthalpy_gas_input.text()
-            self.tableWidget_4.setRowCount(int(row_count))
+            self.enthalpy_gas_table.setRowCount(int(row_count))
 
     def setting_Tab(self):
         self.tabWidget.setCurrentIndex(2)

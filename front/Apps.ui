@@ -118,7 +118,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -198,7 +198,7 @@ QHeaderView::section {
        <number>2</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -355,7 +355,7 @@ color: #000000;</string>
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -512,7 +512,7 @@ QHeaderView::section {
        <attribute name="title">
         <string>Specific heat-gas</string>
        </attribute>
-       <widget class="QTableWidget" name="tableWidget_3">
+       <widget class="QTableWidget" name="specific_heat_table">
         <property name="geometry">
          <rect>
           <x>120</x>
@@ -566,7 +566,7 @@ QHeaderView::section {
          </property>
         </column>
        </widget>
-       <widget class="QPushButton" name="pushButton5_2">
+       <widget class="QPushButton" name="specific_heat_next">
         <property name="geometry">
          <rect>
           <x>760</x>
@@ -627,7 +627,7 @@ border-radius:5px;
        <attribute name="title">
         <string>Enthalpy-gas</string>
        </attribute>
-       <widget class="QTableWidget" name="tableWidget_4">
+       <widget class="QTableWidget" name="enthalpy_gas_table">
         <property name="geometry">
          <rect>
           <x>120</x>
@@ -681,7 +681,7 @@ QHeaderView::section {
          </property>
         </column>
        </widget>
-       <widget class="QPushButton" name="pushButton5_3">
+       <widget class="QPushButton" name="enthalpy_gas_next">
         <property name="geometry">
          <rect>
           <x>760</x>

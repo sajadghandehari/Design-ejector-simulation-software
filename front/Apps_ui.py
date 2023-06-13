@@ -101,7 +101,7 @@ class Ui_mainwindow(object):
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
-        self.tableWidget.horizontalHeader().setVisible(True)
+        self.tableWidget.horizontalHeader().setVisible(False)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(449)
         self.tableWidget.horizontalHeader().setMinimumSectionSize(49)
@@ -243,9 +243,9 @@ class Ui_mainwindow(object):
         self.tabWidget_2.addTab(self.tab_3, "")
         self.tab_4 = QtWidgets.QWidget()
         self.tab_4.setObjectName("tab_4")
-        self.tableWidget_3 = QtWidgets.QTableWidget(self.tab_4)
-        self.tableWidget_3.setGeometry(QtCore.QRect(120, 110, 800, 331))
-        self.tableWidget_3.setStyleSheet("QTableWidget {\n"
+        self.specific_heat_table = QtWidgets.QTableWidget(self.tab_4)
+        self.specific_heat_table.setGeometry(QtCore.QRect(120, 110, 800, 331))
+        self.specific_heat_table.setStyleSheet("QTableWidget {\n"
 "\n"
 "    background-color:rgb(254, 251, 243);\n"
 "    alternate-background-color: rgb(157, 157, 157);\n"
@@ -271,17 +271,17 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_3.setRowCount(0)
-        self.tableWidget_3.setObjectName("tableWidget_3")
-        self.tableWidget_3.setColumnCount(2)
+        self.specific_heat_table.setRowCount(0)
+        self.specific_heat_table.setObjectName("specific_heat_table")
+        self.specific_heat_table.setColumnCount(2)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_3.setHorizontalHeaderItem(0, item)
+        self.specific_heat_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_3.setHorizontalHeaderItem(1, item)
-        self.tableWidget_3.horizontalHeader().setDefaultSectionSize(400)
-        self.pushButton5_2 = QtWidgets.QPushButton(self.tab_4)
-        self.pushButton5_2.setGeometry(QtCore.QRect(760, 460, 160, 28))
-        self.pushButton5_2.setStyleSheet("QPushButton {\n"
+        self.specific_heat_table.setHorizontalHeaderItem(1, item)
+        self.specific_heat_table.horizontalHeader().setDefaultSectionSize(400)
+        self.specific_heat_next = QtWidgets.QPushButton(self.tab_4)
+        self.specific_heat_next.setGeometry(QtCore.QRect(760, 460, 160, 28))
+        self.specific_heat_next.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FF0000;\n"
 "    border-radius:6px;\n"
@@ -289,7 +289,7 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton5_2.setObjectName("pushButton5_2")
+        self.specific_heat_next.setObjectName("specific_heat_next")
         self.specific_heat_input = QtWidgets.QLineEdit(self.tab_4)
         self.specific_heat_input.setGeometry(QtCore.QRect(310, 40, 100, 30))
         self.specific_heat_input.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
@@ -307,9 +307,9 @@ class Ui_mainwindow(object):
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_5 = QtWidgets.QWidget()
         self.tab_5.setObjectName("tab_5")
-        self.tableWidget_4 = QtWidgets.QTableWidget(self.tab_5)
-        self.tableWidget_4.setGeometry(QtCore.QRect(120, 110, 800, 330))
-        self.tableWidget_4.setStyleSheet("QTableWidget {\n"
+        self.enthalpy_gas_table = QtWidgets.QTableWidget(self.tab_5)
+        self.enthalpy_gas_table.setGeometry(QtCore.QRect(120, 110, 800, 330))
+        self.enthalpy_gas_table.setStyleSheet("QTableWidget {\n"
 "\n"
 "    background-color:rgb(254, 251, 243);\n"
 "    alternate-background-color: rgb(157, 157, 157);\n"
@@ -335,17 +335,17 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_4.setRowCount(0)
-        self.tableWidget_4.setObjectName("tableWidget_4")
-        self.tableWidget_4.setColumnCount(2)
+        self.enthalpy_gas_table.setRowCount(0)
+        self.enthalpy_gas_table.setObjectName("enthalpy_gas_table")
+        self.enthalpy_gas_table.setColumnCount(2)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_4.setHorizontalHeaderItem(0, item)
+        self.enthalpy_gas_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_4.setHorizontalHeaderItem(1, item)
-        self.tableWidget_4.horizontalHeader().setDefaultSectionSize(400)
-        self.pushButton5_3 = QtWidgets.QPushButton(self.tab_5)
-        self.pushButton5_3.setGeometry(QtCore.QRect(760, 460, 160, 28))
-        self.pushButton5_3.setStyleSheet("QPushButton {\n"
+        self.enthalpy_gas_table.setHorizontalHeaderItem(1, item)
+        self.enthalpy_gas_table.horizontalHeader().setDefaultSectionSize(400)
+        self.enthalpy_gas_next = QtWidgets.QPushButton(self.tab_5)
+        self.enthalpy_gas_next.setGeometry(QtCore.QRect(760, 460, 160, 28))
+        self.enthalpy_gas_next.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FF0000;\n"
 "    border-radius:6px;\n"
@@ -353,7 +353,7 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton5_3.setObjectName("pushButton5_3")
+        self.enthalpy_gas_next.setObjectName("enthalpy_gas_next")
         self.label_38 = QtWidgets.QLabel(self.tab_5)
         self.label_38.setGeometry(QtCore.QRect(130, 40, 141, 30))
         self.label_38.setObjectName("label_38")
@@ -816,8 +816,8 @@ class Ui_mainwindow(object):
         mainwindow.setMenuBar(self.menubar)
 
         self.retranslateUi(mainwindow)
-        self.tabWidget.setCurrentIndex(0)
-        self.tabWidget_2.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget_2.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, mainwindow):
@@ -851,18 +851,18 @@ class Ui_mainwindow(object):
         item = self.properties_table.horizontalHeaderItem(7)
         item.setText(_translate("mainwindow", "Constant C"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_3), _translate("mainwindow", "Gas Properties"))
-        item = self.tableWidget_3.horizontalHeaderItem(0)
+        item = self.specific_heat_table.horizontalHeaderItem(0)
         item.setText(_translate("mainwindow", "Temperature (R)"))
-        item = self.tableWidget_3.horizontalHeaderItem(1)
+        item = self.specific_heat_table.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Specific Heat"))
-        self.pushButton5_2.setText(_translate("mainwindow", "Next >"))
+        self.specific_heat_next.setText(_translate("mainwindow", "Next >"))
         self.label_37.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), _translate("mainwindow", "Specific heat-gas"))
-        item = self.tableWidget_4.horizontalHeaderItem(0)
+        item = self.enthalpy_gas_table.horizontalHeaderItem(0)
         item.setText(_translate("mainwindow", "Temperature (R)"))
-        item = self.tableWidget_4.horizontalHeaderItem(1)
+        item = self.enthalpy_gas_table.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Specific Enthalpy"))
-        self.pushButton5_3.setText(_translate("mainwindow", "Next >"))
+        self.enthalpy_gas_next.setText(_translate("mainwindow", "Next >"))
         self.label_38.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), _translate("mainwindow", "Enthalpy-gas"))
         self.label_3.setText(_translate("mainwindow", "Environment Temperature(R) :"))
