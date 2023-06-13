@@ -50,7 +50,7 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
     """)
 
     table_widgets = [self.specific_heat_table, self.enthalpy_gas_table,
-                     self.tableWidget_5, self.tableWidget_6]
+                     self.gls_properties_table, self.bellow_table]
 
     for table_widget in table_widgets:
         table_widget.setStyleSheet(f"""
@@ -73,11 +73,15 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
     self.enthalpy_gas_input.setStyleSheet(
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+    self.gls_properties_input.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+    self.bellow_input.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
 
     if color_D == 'rgb(248, 240, 223)':
         color_D = 'rgb(34, 40, 49)'
 
-    label_ranges = [(2, 10), (18, 23), (37, 39)]
+    label_ranges = [(2, 10), (18, 23), (37, 41)]
     for start, end in label_ranges:
         for i in range(start, end):
             label = getattr(self, f"label_{i}")

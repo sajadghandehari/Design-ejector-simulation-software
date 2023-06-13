@@ -281,3 +281,11 @@ def enthalpy_gas_save_data(self):
         self.writer, sheet_name='entalpy_gas', header=header_names, index=False)
 
     self.writer.close()
+
+
+def gls_properties_get_data(self):
+    pass
+
+
+def bellow_get_data(self):
+    pass

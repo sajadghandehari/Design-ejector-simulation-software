@@ -540,9 +540,9 @@ class Ui_mainwindow(object):
         self.label_18 = QtWidgets.QLabel(self.tab_6)
         self.label_18.setGeometry(QtCore.QRect(580, 60, 231, 30))
         self.label_18.setObjectName("label_18")
-        self.pushButton5_4 = QtWidgets.QPushButton(self.tab_6)
-        self.pushButton5_4.setGeometry(QtCore.QRect(850, 460, 160, 28))
-        self.pushButton5_4.setStyleSheet("QPushButton {\n"
+        self.gls_properties_next = QtWidgets.QPushButton(self.tab_6)
+        self.gls_properties_next.setGeometry(QtCore.QRect(850, 460, 160, 28))
+        self.gls_properties_next.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FF0000;\n"
 "    border-radius:6px;\n"
@@ -550,13 +550,13 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton5_4.setObjectName("pushButton5_4")
+        self.gls_properties_next.setObjectName("gls_properties_next")
         self.tabWidget_2.addTab(self.tab_6, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
-        self.tableWidget_5 = QtWidgets.QTableWidget(self.tab_2)
-        self.tableWidget_5.setGeometry(QtCore.QRect(120, 80, 800, 350))
-        self.tableWidget_5.setStyleSheet("QTableWidget {\n"
+        self.gls_properties_table = QtWidgets.QTableWidget(self.tab_2)
+        self.gls_properties_table.setGeometry(QtCore.QRect(120, 110, 800, 321))
+        self.gls_properties_table.setStyleSheet("QTableWidget {\n"
 "\n"
 "    background-color:rgb(254, 251, 243);\n"
 "    alternate-background-color: rgb(157, 157, 157);\n"
@@ -582,16 +582,16 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_5.setRowCount(12)
-        self.tableWidget_5.setObjectName("tableWidget_5")
-        self.tableWidget_5.setColumnCount(3)
+        self.gls_properties_table.setRowCount(12)
+        self.gls_properties_table.setObjectName("gls_properties_table")
+        self.gls_properties_table.setColumnCount(3)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_5.setHorizontalHeaderItem(0, item)
+        self.gls_properties_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_5.setHorizontalHeaderItem(1, item)
+        self.gls_properties_table.setHorizontalHeaderItem(1, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_5.setHorizontalHeaderItem(2, item)
-        self.tableWidget_5.horizontalHeader().setDefaultSectionSize(249)
+        self.gls_properties_table.setHorizontalHeaderItem(2, item)
+        self.gls_properties_table.horizontalHeader().setDefaultSectionSize(249)
         self.pushButton5_6 = QtWidgets.QPushButton(self.tab_2)
         self.pushButton5_6.setGeometry(QtCore.QRect(760, 450, 160, 28))
         self.pushButton5_6.setStyleSheet("QPushButton {\n"
@@ -603,12 +603,26 @@ class Ui_mainwindow(object):
 "}\n"
 "")
         self.pushButton5_6.setObjectName("pushButton5_6")
+        self.label_39 = QtWidgets.QLabel(self.tab_2)
+        self.label_39.setGeometry(QtCore.QRect(120, 50, 141, 30))
+        self.label_39.setObjectName("label_39")
+        self.gls_properties_input = QtWidgets.QLineEdit(self.tab_2)
+        self.gls_properties_input.setGeometry(QtCore.QRect(300, 50, 100, 30))
+        self.gls_properties_input.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
+"background-color: rgb(121, 180, 183);\n"
+"color: rgb(34, 40, 49);\n"
+"border-radius:5px;\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.gls_properties_input.setObjectName("gls_properties_input")
         self.tabWidget_2.addTab(self.tab_2, "")
         self.tab_7 = QtWidgets.QWidget()
         self.tab_7.setObjectName("tab_7")
-        self.tableWidget_6 = QtWidgets.QTableWidget(self.tab_7)
-        self.tableWidget_6.setGeometry(QtCore.QRect(120, 80, 800, 350))
-        self.tableWidget_6.setStyleSheet("QTableWidget {\n"
+        self.bellow_table = QtWidgets.QTableWidget(self.tab_7)
+        self.bellow_table.setGeometry(QtCore.QRect(120, 110, 800, 321))
+        self.bellow_table.setStyleSheet("QTableWidget {\n"
 "\n"
 "    background-color:rgb(254, 251, 243);\n"
 "    alternate-background-color: rgb(157, 157, 157);\n"
@@ -634,14 +648,14 @@ class Ui_mainwindow(object):
 "    \n"
 "}\n"
 "")
-        self.tableWidget_6.setRowCount(12)
-        self.tableWidget_6.setObjectName("tableWidget_6")
-        self.tableWidget_6.setColumnCount(2)
+        self.bellow_table.setRowCount(12)
+        self.bellow_table.setObjectName("bellow_table")
+        self.bellow_table.setColumnCount(2)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_6.setHorizontalHeaderItem(0, item)
+        self.bellow_table.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
-        self.tableWidget_6.setHorizontalHeaderItem(1, item)
-        self.tableWidget_6.horizontalHeader().setDefaultSectionSize(374)
+        self.bellow_table.setHorizontalHeaderItem(1, item)
+        self.bellow_table.horizontalHeader().setDefaultSectionSize(374)
         self.pushButton5_5 = QtWidgets.QPushButton(self.tab_7)
         self.pushButton5_5.setGeometry(QtCore.QRect(760, 450, 160, 28))
         self.pushButton5_5.setStyleSheet("QPushButton {\n"
@@ -653,6 +667,20 @@ class Ui_mainwindow(object):
 "}\n"
 "")
         self.pushButton5_5.setObjectName("pushButton5_5")
+        self.label_40 = QtWidgets.QLabel(self.tab_7)
+        self.label_40.setGeometry(QtCore.QRect(120, 50, 141, 30))
+        self.label_40.setObjectName("label_40")
+        self.bellow_input = QtWidgets.QLineEdit(self.tab_7)
+        self.bellow_input.setGeometry(QtCore.QRect(300, 50, 100, 30))
+        self.bellow_input.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
+"background-color: rgb(121, 180, 183);\n"
+"color: rgb(34, 40, 49);\n"
+"border-radius:5px;\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.bellow_input.setObjectName("bellow_input")
         self.tabWidget_2.addTab(self.tab_7, "")
         self.tabWidget.addTab(self.Simulation, "")
         self.tab_8 = QtWidgets.QWidget()
@@ -817,7 +845,7 @@ class Ui_mainwindow(object):
 
         self.retranslateUi(mainwindow)
         self.tabWidget.setCurrentIndex(1)
-        self.tabWidget_2.setCurrentIndex(2)
+        self.tabWidget_2.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, mainwindow):
@@ -877,21 +905,23 @@ class Ui_mainwindow(object):
         self.label_21.setText(_translate("mainwindow", "Orifice diameter(in) :"))
         self.label_22.setText(_translate("mainwindow", "The angle of the axis of the production tube and the analos with the vertical axis :"))
         self.label_18.setText(_translate("mainwindow", "Water cut :"))
-        self.pushButton5_4.setText(_translate("mainwindow", "Next >"))
+        self.gls_properties_next.setText(_translate("mainwindow", "Next >"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), _translate("mainwindow", "GLS Properties "))
-        item = self.tableWidget_5.horizontalHeaderItem(0)
+        item = self.gls_properties_table.horizontalHeaderItem(0)
         item.setText(_translate("mainwindow", "Injection pressure(Psig)"))
-        item = self.tableWidget_5.horizontalHeaderItem(1)
+        item = self.gls_properties_table.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Well pressure changes(Psig)"))
-        item = self.tableWidget_5.horizontalHeaderItem(2)
+        item = self.gls_properties_table.horizontalHeaderItem(2)
         item.setText(_translate("mainwindow", "Surface temperature (R)"))
         self.pushButton5_6.setText(_translate("mainwindow", "Next >"))
+        self.label_39.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_2), _translate("mainwindow", "GLS Properties page 2"))
-        item = self.tableWidget_6.horizontalHeaderItem(0)
+        item = self.bellow_table.horizontalHeaderItem(0)
         item.setText(_translate("mainwindow", "Bellows Phenrite stress changes(Psig)"))
-        item = self.tableWidget_6.horizontalHeaderItem(1)
+        item = self.bellow_table.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Length change(in)"))
         self.pushButton5_5.setText(_translate("mainwindow", "Next >"))
+        self.label_40.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_7), _translate("mainwindow", "Bellow"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Simulation), _translate("mainwindow", "Simulation"))
         self.label_24.setText(_translate("mainwindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:600;\">You can choose your theme :</span></p></body></html>"))

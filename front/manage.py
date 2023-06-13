@@ -134,6 +134,7 @@ class MainApp(QMainWindow, ui):
         self.setWindowIcon(QIcon('front/python.png'))
         self.calasic_theme()
         self.writer = pd.ExcelWriter('back/output2.xls')
+        self.gls_properties = {}
 
     def Handel_UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
@@ -156,6 +157,9 @@ class MainApp(QMainWindow, ui):
         self.enthalpy_gas_next.clicked.connect(
             lambda: self.tabWidget_2.setCurrentIndex(3))
         self.enthalpy_gas_next.setEnabled(False)
+        self.gls_properties_next.clicked.connect(
+            lambda: self.tabWidget_2.setCurrentIndex(4))
+        self.gls_properties_next.setEnabled(False)
 
         self.gas_propertice_input.returnPressed.connect(
             lambda: self.set_row('A'))
@@ -163,6 +167,35 @@ class MainApp(QMainWindow, ui):
             lambda: self.set_row('B'))
         self.enthalpy_gas_input.returnPressed.connect(
             lambda: self.set_row('C'))
+        self.gls_properties_input.returnPressed.connect(
+            lambda: self.set_row('D'))
+        self.bellow_input.returnPressed.connect(
+            lambda: self.set_row('E'))
+
+        self.lineEdit_2.returnPressed.connect(lambda: self.get_gls_properties(
+            'Environment Temperature(R)', self.lineEdit_2))
+        self.lineEdit_3.returnPressed.connect(lambda: self.get_gls_properties(
+            'Environment Pressure(Psig)', self.lineEdit_3))
+        self.lineEdit_4.returnPressed.connect(lambda: self.get_gls_properties(
+            'Installation height of operating valve(Mft)', self.lineEdit_4))
+        self.lineEdit_5.returnPressed.connect(lambda: self.get_gls_properties(
+            'Bellows Pressure(Psig)', self.lineEdit_5))
+        self.lineEdit_6.returnPressed.connect(lambda: self.get_gls_properties(
+            'Fenrit Bellows tension(Psig)', self.lineEdit_6))
+        self.lineEdit_7.returnPressed.connect(lambda: self.get_gls_properties(
+            'Cross section of Bellows(in^2)', self.lineEdit_7))
+        self.lineEdit_8.returnPressed.connect(lambda: self.get_gls_properties(
+            'Cross section of Pilot(in^2)', self.lineEdit_8))
+        self.lineEdit_17.returnPressed.connect(lambda: self.get_gls_properties(
+            'Water cut', self.lineEdit_17))
+        self.lineEdit_18.returnPressed.connect(lambda: self.get_gls_properties(
+            'API gravity', self.lineEdit_18))
+        self.lineEdit_19.returnPressed.connect(lambda: self.get_gls_properties(
+            'Production tube(in)', self.lineEdit_19))
+        self.lineEdit_20.returnPressed.connect(lambda: self.get_gls_properties(
+            'Orifice diameter(in)', self.lineEdit_20))
+        self.lineEdit_21.returnPressed.connect(lambda: self.get_gls_properties(
+            'The angle of the axis of the production tube and the analos with the vertical axis', self.lineEdit_21))
 
         self.properties_table.cellChanged.connect(
             lambda: table_propertise_get_data(self))
@@ -172,6 +205,12 @@ class MainApp(QMainWindow, ui):
 
         self.enthalpy_gas_table.cellChanged.connect(
             lambda: enthalpy_gas_get_data(self))
+
+        self.gls_properties_table.cellChanged.connect(
+            lambda: gls_properties_get_data(self))
+
+        self.bellow_table.cellChanged.connect(
+            lambda: bellow_get_data(self))
 
     def specific_heat_gas_Tab(self):
 
@@ -195,9 +234,42 @@ class MainApp(QMainWindow, ui):
         if table == 'C':
             row_count = self.enthalpy_gas_input.text()
             self.enthalpy_gas_table.setRowCount(int(row_count))
+        if table == 'D':
+            row_count = self.gls_properties_input.text()
+            self.gls_properties_table.setRowCount(int(row_count))
+        if table == 'E':
+            row_count = self.bellow_input.text()
+            self.bellow_table.setRowCount(int(row_count))
 
     def setting_Tab(self):
         self.tabWidget.setCurrentIndex(2)
+
+    def get_gls_properties(self, name, value):
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         Qt.red)  # Set the text color to red
+        self.statusBar().setPalette(palette)
+
+        if not value.text().isdigit():
+            self.statusBar().showMessage(f'{name} must be integer!')
+            value.setText('')
+            if name in self.gls_properties:
+                self.gls_properties.pop(name)
+
+        else:
+            palette.setColor(self.statusBar().foregroundRole(),
+                             QColor(82, 115, 77))
+            self.statusBar().setPalette(palette)
+            self.gls_properties[name] = value.text()
+            self.statusBar().showMessage(f'save {name} successfuly')
+            if len(self.gls_properties) == 12:
+                self.gls_properties_next.setEnabled(True)
+                self.gls_properties_next.setStyleSheet(
+                    "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
+            else:
+                self.gls_properties_next.setEnabled(False)
+                self.gls_properties_next.setStyleSheet(
+                    "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
 
     def calasic_theme(self):
 
