@@ -1,14 +1,14 @@
 import math
 import numpy
-from Calculated_function.HCP import *
-from Calculated_function.intrp3 import *
-from Calculated_function.VISCON import *
-from Calculated_function.INCOMPRESIBLE import *
+from back.Calculated_function.HCP import *
+from back.Calculated_function.intrp3 import *
+from back.Calculated_function.VISCON import *
+from back.Calculated_function.INCOMPRESIBLE import *
 import sys
 sys.path.append('/path/to/Calculated_function')
 
 
-def PRODUCTIONTUBE_MULTI(press_s, t22, orifice_d, d_av, tube_d, ppc, tpc, q_t, press_amb, temp_amb, depth, temp_grad1, teta, g, rol, gama_gas, wc):
+def PRODUCTIONTUBE_MULTI(self, press_s, t22, orifice_d, d_av, tube_d, ppc, tpc, q_t, press_amb, temp_amb, depth, temp_grad1, teta, g, rol, gama_gas, wc):
 
     global tmptab, htab01, htab02, htab03, htab04, htab05, htab06, ntab, n_tab
     global cptab01, cptab02, cptab03, cptab04, cptab05, cptab06, delhif, ns, n_species
@@ -52,15 +52,15 @@ def PRODUCTIONTUBE_MULTI(press_s, t22, orifice_d, d_av, tube_d, ppc, tpc, q_t, p
     z2 = INCOMPRESIBLE(pr, tr)
     t2 = t1 + temp_grad1 * length / 1000
     vm = 60 * 0.001 * q_gsc * t2 / (d_av ** 2 * press_amb)
-    cpii, hii, hfac = HCP(t2)
-    enthalpy = 0
-    s_heat = 0
+    self.cpii, self.hii, hfac = HCP(self, t2)
+    self.enthalpy = 0
+    self.s_heat = 0
 
-    for i in range(n_species):
-        s_heat += cpii[i] * xx[i]
-        enthalpy += hii[i] * xx[i]
+    for i in range(self.n_species):
+        self.s_heat += self.cpii[i] * self.xx[i]
+        self.enthalpy += self.hii[i] * self.xx[i]
 
-    amu, akay = VISCON(xx, cpii, t2)
+    amu, akay = VISCON(self, self.xx, self.cpii, t2)
 
     if p2 < 1500:
         miu = 0.001 * math.exp(-0.001 * p2)
@@ -94,15 +94,15 @@ def PRODUCTIONTUBE_MULTI(press_s, t22, orifice_d, d_av, tube_d, ppc, tpc, q_t, p
 
         while abs(eps6) > 0.1:
             vm = 60 * 0.001 * q_gsc * t2 / (d_av ** 2 * press_amb)
-            cpii, hii, hfac = HCP(t2)
-            enthalpy = 0
-            s_heat = 0
+            cpii, self.hii, hfac = HCP(self, t2)
+            self.enthalpy = 0
+            self.s_heat = 0
 
-            for i in range(n_species):
-                s_heat += cpii[i] * xx[i]
-                enthalpy += hii[i] * xx[i]
+            for i in range(self.n_species):
+                self.s_heat += self.cpii[i] * self.xx[i]
+                self.enthalpy += self.hii[i] * self.xx[i]
 
-            amu, akay = VISCON(xx, cpii, t2)
+            amu, akay = VISCON(self, self.xx, self.cpii, t2)
 
             if p2 < 1500:
                 miu = 0.001 * math.exp(-0.001 * p2)
@@ -147,15 +147,15 @@ def PRODUCTIONTUBE_MULTI(press_s, t22, orifice_d, d_av, tube_d, ppc, tpc, q_t, p
 
             while abs(eps) > 0.1:
                 vm = 60 * 0.001 * q_gsc * t2 / (d_av ** 2 * press_amb)
-                cpii, hii, hfac = HCP(t2)
-                enthalpy = 0
+                self.cpii, self.hii, hfac = HCP(self, t2)
+                self.enthalpy = 0
                 s_heat = 0
 
-                for i in range(n_species):
-                    s_heat += cpii[i] * xx[i]
-                    enthalpy += hii[i] * xx[i]
+                for i in range(self.n_species):
+                    self.s_heat += self.cpii[i] * self.xx[i]
+                    self.enthalpy += self.hii[i] * self.xx[i]
 
-                amu, akay = VISCON(xx, cpii, t2)
+                amu, akay = VISCON(self, self.xx, self.cpii, t2)
 
                 if p2 < 1500:
                     miu = 0.001 * math.exp(-0.001 * p2)

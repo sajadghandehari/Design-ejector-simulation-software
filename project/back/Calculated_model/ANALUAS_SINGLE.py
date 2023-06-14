@@ -2,16 +2,16 @@ import sys
 sys.path.append('/path/to/Calculated_function')
 
 
-from Calculated_function.INCOMPRESIBLE import *
-from Calculated_function.VISCON import *
-from Calculated_function.intrp3 import *
-from Calculated_function.HCP import *
+from back.Calculated_function.INCOMPRESIBLE import *
+from back.Calculated_function.VISCON import *
+from back.Calculated_function.intrp3 import *
+from back.Calculated_function.HCP import *
 
 import math
 import numpy
 
 
-def ANALUAS_SINGLE(orifice_d1, d_av, depth, p_input, temp_s, casing_d, tube_d, temp_grad, pt, teta, ppc, tpc, gama_gas, g, area_p):
+def ANALUAS_SINGLE(self, orifice_d1, d_av, depth, p_input, temp_s, casing_d, tube_d, temp_grad, pt, teta, ppc, tpc, gama_gas, g, area_p):
     global tmptab, htab01, htab02, htab03, htab04, htab05, htab06, ntab, n_tab
     global cptab01, cptab02, cptab03, cptab04, cptab05, cptab06, delhif, ns, n_species
     global vsa, vsb, vsc, emi, rg, xx 
@@ -67,13 +67,13 @@ def ANALUAS_SINGLE(orifice_d1, d_av, depth, p_input, temp_s, casing_d, tube_d, t
                 [z2] = INCOMPRESIBLE(pu / ppc, t2 / tpc)
                 vg = 60 * 0.001 * q_t * z2 * t2 / (orifice_d ** 2 * p1)
                 rou = 2.7 * pu / (z2 * t2)
-                [cpii, hii, hfac] = HCP(t2)
+                [cpii, hii, hfac] = HCP(self, t2)
                 entalpy = 0
                 s_heat = 0
-                for i in range(n_species):
-                    s_heat = s_heat + cpii[i] * xx[i]
-                    entalpy = entalpy + hii[i] * xx[i]
-                [amu, akay] = VISCON(xx, cpii, t2)
+                for i in range(self.n_species):
+                    s_heat = s_heat + cpii[i] * self.xx[i]
+                    entalpy = entalpy + hii[i] * self.xx[i]
+                [amu, akay] = VISCON(self, self.xx, cpii, t2)
                 re = 2 / 6.7 * q_t * gama_gas / (amu * 32 * d_av)
                 if re < 2400:
                     ff = 16 / re
@@ -117,7 +117,7 @@ def ANALUAS_SINGLE(orifice_d1, d_av, depth, p_input, temp_s, casing_d, tube_d, t
 
 
 
-            gama = s_heat / (s_heat - rg * 1545 / 10.5)
+            gama = s_heat / (s_heat - self.rg * 1545 / 10.5)
             beta = orifice_d / d_av
             cd = (0.598 + 0.468 * (beta ** 4 + 10 * beta ** 12)) * (1 - beta ** 4) ** 0.5 \
                 + (0.87 + 8.1 * beta ** 4) * ((1 - beta ** 4) / 10 ** 6) ** 0.5
@@ -132,9 +132,9 @@ def ANALUAS_SINGLE(orifice_d1, d_av, depth, p_input, temp_s, casing_d, tube_d, t
 
         
 
-        diff_tension = p2 - (1/(1-rr)*pd1 - rr/(1-rr)*pt)
+        diff_tension = p2 - (1/(1-self.rr)*self.pd1 - self.rr/(1-self.rr)*pt)
 
-        xstem = intrp3(diff_tension, tension_b, x_stem, number)
+        xstem = intrp3(diff_tension, self.tension_b, self.x_stem, self.number)
         d_pilot = (4*area_p/3.14)**0.5
         area_p_eq = 3.14 * d_pilot * xstem
         d_orif = (4 * area_p_eq / 3.14)**0.5

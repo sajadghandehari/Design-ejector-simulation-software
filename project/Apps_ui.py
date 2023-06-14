@@ -101,7 +101,7 @@ class Ui_mainwindow(object):
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
-        self.tableWidget.horizontalHeader().setVisible(False)
+        self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(449)
         self.tableWidget.horizontalHeader().setMinimumSectionSize(49)
@@ -858,7 +858,7 @@ class Ui_mainwindow(object):
         mainwindow.setMenuBar(self.menubar)
 
         self.retranslateUi(mainwindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 

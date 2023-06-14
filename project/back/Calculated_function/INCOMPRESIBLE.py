@@ -1,5 +1,5 @@
 import numpy as np
-from Calculated_function.intrp3 import *
+from back.Calculated_function.intrp3 import *
 
 
 def INCOMPRESIBLE(pr, tr, condition=False):

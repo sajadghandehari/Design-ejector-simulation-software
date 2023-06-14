@@ -1,16 +1,18 @@
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
-import sys
-import pandas
-
-from PyQt5.uic import loadUiType
-from themes.Theme import *
+from back.main import *
+from back.main import Run
 from simulation.simulation_data import *
+from themes.Theme import *
+from PyQt5.uic import loadUiType
+import pandas
+from PyQt5.QtWidgets import *
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
+import sys
 
-ui, _ = loadUiType('front/Apps.ui')
-create_user, _ = loadUiType('front/Createusername.ui')
-login, _ = loadUiType('front/Login.ui')
+
+ui, _ = loadUiType('project/Apps.ui')
+create_user, _ = loadUiType('project/Createusername.ui')
+login, _ = loadUiType('project/Login.ui')
 
 
 class Login(QMainWindow, login):
@@ -19,7 +21,7 @@ class Login(QMainWindow, login):
         self.setupUi(self)
 
         self.setWindowTitle("Login page")
-        self.setWindowIcon(QIcon('front/python.png'))
+        self.setWindowIcon(QIcon('project/python.png'))
 
         self.Handel_Buttons()
 
@@ -66,7 +68,7 @@ class CreateUser(QMainWindow, create_user):
         self.setupUi(self)
 
         self.setWindowTitle("Create User page")
-        self.setWindowIcon(QIcon('front/python.png'))
+        self.setWindowIcon(QIcon('project/python.png'))
 
         self.Handel_Buttons()
 
@@ -131,9 +133,9 @@ class MainApp(QMainWindow, ui):
         self.Handel_UI_Changes()
         self.Handel_Buttons()
         self.setWindowTitle("Ejector Simulation App")
-        self.setWindowIcon(QIcon('front/python.png'))
+        self.setWindowIcon(QIcon('project/python.png'))
         self.calasic_theme()
-        self.writer = pd.ExcelWriter('back/output2.xls')
+        self.writer = pd.ExcelWriter('project/back/output2.xls')
         self.gls_properties = {}
 
     def Handel_UI_Changes(self):
@@ -328,8 +330,11 @@ class MainApp(QMainWindow, ui):
         self.tabWidget.setTabEnabled(1, False)
         pass
 
-    # def simulation(self):
-    #     run('back/input.xls')
+    def simulation(self):
+        run = Run()
+
+        # Call the run() method and provide the required arguments
+        run.run('project/back/input.xls')
 
 
 if __name__ == '__main__':
