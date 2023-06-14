@@ -6,6 +6,14 @@ import pandas as pd
 component_names = []
 
 
+def is_float_number(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+
 def table_propertise_get_data(self):
     global component_names
 
@@ -41,7 +49,7 @@ def table_propertise_get_data(self):
 
         if '' not in cell:
 
-            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(1, 8)) and not cell[0].isdigit():
+            if all(isinstance(cell[i], str) and is_float_number(cell[i]) for i in range(1, 8)) and not cell[0].isdigit():
                 if cell[0] not in component_names:
                     component_names.append(f'Specific Heat {cell[0]}')
 
@@ -135,7 +143,7 @@ def specific_heat_gas_get_data(self):
 
         if '' not in cell:
 
-            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+            if all(isinstance(cell[i], str) and is_float_number(cell[i]) for i in range(0, num_cols)):
 
                 table_row_count += 1
                 if table_row == table_row_count:
@@ -229,7 +237,7 @@ def enthalpy_gas_get_data(self):
 
         if '' not in cell:
 
-            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+            if all(isinstance(cell[i], str) and is_float_number(cell[i]) for i in range(0, num_cols)):
 
                 table_row_count += 1
                 if table_row == table_row_count:
@@ -310,7 +318,7 @@ def gls_properties_get_data(self):
 
         if '' not in cell:
 
-            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+            if all(isinstance(cell[i], str) and is_float_number(cell[i]) for i in range(0, num_cols)):
 
                 table_row_count += 1
                 if table_row == table_row_count:
@@ -400,7 +408,7 @@ def bellow_get_data(self):
 
         if '' not in cell:
 
-            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+            if all(isinstance(cell[i], str) and is_float_number(cell[i]) for i in range(0, num_cols)):
 
                 table_row_count += 1
                 if table_row == table_row_count:

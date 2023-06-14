@@ -111,7 +111,9 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(248, 240, 223);
-
+font: 87 9pt &quot;Roboto Black&quot;;
+color:   rgb(21,76,121);
+color: #000000;
 </string>
     </property>
     <property name="tabShape">
@@ -131,9 +133,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>90</y>
+        <y>160</y>
         <width>921</width>
-        <height>311</height>
+        <height>241</height>
        </rect>
       </property>
       <property name="mouseTracking">
@@ -254,30 +256,31 @@ QHeaderView::section {
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
+        <x>20</x>
+        <y>110</y>
         <width>411</width>
         <height>41</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Calibri (Body)</family>
-        <pointsize>12</pointsize>
-        <weight>9</weight>
+        <family>Roboto Black</family>
+        <pointsize>10</pointsize>
+        <weight>10</weight>
         <italic>false</italic>
         <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 75 12pt &quot;Calibri (Body)&quot;;
-color:   rgb(21,76,121);</string>
+       <string notr="true">font: 87 10pt &quot;Roboto Black&quot;;
+color:   rgb(21,76,121);
+color: #000000;</string>
       </property>
       <property name="text">
        <string>You can see you history of simulations here :</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="LoginButton">
+     <widget class="QPushButton" name="open_simulation">
       <property name="geometry">
        <rect>
         <x>510</x>
@@ -300,7 +303,7 @@ color:   rgb(21,76,121);</string>
        <string>Open simulation</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="LoginButton_2">
+     <widget class="QPushButton" name="open_new_simulation">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -321,6 +324,53 @@ color:   rgb(21,76,121);</string>
       </property>
       <property name="text">
        <string>Open new simulation</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>40</y>
+        <width>181</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 87 10pt &quot;Roboto Black&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius:5px;
+
+
+
+</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>30</y>
+        <width>251</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Black</family>
+        <pointsize>10</pointsize>
+        <weight>10</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 87 10pt &quot;Roboto Black&quot;;
+color:   rgb(21,76,121);
+color: #000000;</string>
+      </property>
+      <property name="text">
+       <string>You can select you simulation :</string>
       </property>
      </widget>
     </widget>
@@ -355,7 +405,7 @@ color: #000000;</string>
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>5</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>

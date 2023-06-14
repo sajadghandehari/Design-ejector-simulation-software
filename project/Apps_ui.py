@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\Sajad\AP_Dr_Rafiei\Finall project\Design-ejector-simulation-software\front\Apps.ui'
+# Form implementation generated from reading ui file 'c:\Users\Sajad\AP_Dr_Rafiei\Finall project\Design-ejector-simulation-software\project\Apps.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -25,7 +25,7 @@ class Ui_mainwindow(object):
         self.history_tab.setStyleSheet("border: none;")
         self.history_tab.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\front\\icon/history-36.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\project\\icon/history-36.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.history_tab.setIcon(icon)
         self.history_tab.setIconSize(QtCore.QSize(70, 70))
         self.history_tab.setObjectName("history_tab")
@@ -34,7 +34,7 @@ class Ui_mainwindow(object):
         self.simulation_tab.setStyleSheet("border: none;")
         self.simulation_tab.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\front\\icon/5346252.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\project\\icon/5346252.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.simulation_tab.setIcon(icon1)
         self.simulation_tab.setIconSize(QtCore.QSize(70, 70))
         self.simulation_tab.setObjectName("simulation_tab")
@@ -43,7 +43,7 @@ class Ui_mainwindow(object):
         self.setting_tab.setStyleSheet("border: none;")
         self.setting_tab.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\front\\icon/Settings-icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\Sajad\\AP_Dr_Rafiei\\Finall project\\Design-ejector-simulation-software\\project\\icon/Settings-icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.setting_tab.setIcon(icon2)
         self.setting_tab.setIconSize(QtCore.QSize(70, 70))
         self.setting_tab.setObjectName("setting_tab")
@@ -51,7 +51,9 @@ class Ui_mainwindow(object):
         self.tabWidget.setGeometry(QtCore.QRect(149, 30, 1050, 561))
         self.tabWidget.setMouseTracking(False)
         self.tabWidget.setStyleSheet("background-color: rgb(248, 240, 223);\n"
-"\n"
+"font: 87 9pt \"Roboto Black\";\n"
+"color:   rgb(21,76,121);\n"
+"color: #000000;\n"
 "")
         self.tabWidget.setTabShape(QtWidgets.QTabWidget.Rounded)
         self.tabWidget.setTabBarAutoHide(False)
@@ -59,7 +61,7 @@ class Ui_mainwindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 90, 921, 311))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 160, 921, 241))
         self.tableWidget.setMouseTracking(False)
         self.tableWidget.setStyleSheet("QTableWidget {\n"
 "\n"
@@ -113,20 +115,21 @@ class Ui_mainwindow(object):
         self.tableWidget.verticalHeader().setMinimumSectionSize(30)
         self.tableWidget.verticalHeader().setSortIndicatorShown(False)
         self.label = QtWidgets.QLabel(self.tab)
-        self.label.setGeometry(QtCore.QRect(10, 30, 411, 41))
+        self.label.setGeometry(QtCore.QRect(20, 110, 411, 41))
         font = QtGui.QFont()
-        font.setFamily("Calibri (Body)")
-        font.setPointSize(12)
+        font.setFamily("Roboto Black")
+        font.setPointSize(10)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(9)
+        font.setWeight(10)
         self.label.setFont(font)
-        self.label.setStyleSheet("font: 75 12pt \"Calibri (Body)\";\n"
-"color:   rgb(21,76,121);")
+        self.label.setStyleSheet("font: 87 10pt \"Roboto Black\";\n"
+"color:   rgb(21,76,121);\n"
+"color: #000000;")
         self.label.setObjectName("label")
-        self.LoginButton = QtWidgets.QPushButton(self.tab)
-        self.LoginButton.setGeometry(QtCore.QRect(510, 430, 211, 31))
-        self.LoginButton.setStyleSheet("QPushButton {\n"
+        self.open_simulation = QtWidgets.QPushButton(self.tab)
+        self.open_simulation.setGeometry(QtCore.QRect(510, 430, 211, 31))
+        self.open_simulation.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FFFFFF;\n"
 "    border-radius:6px;\n"
@@ -134,10 +137,10 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.LoginButton.setObjectName("LoginButton")
-        self.LoginButton_2 = QtWidgets.QPushButton(self.tab)
-        self.LoginButton_2.setGeometry(QtCore.QRect(730, 430, 211, 31))
-        self.LoginButton_2.setStyleSheet("QPushButton {\n"
+        self.open_simulation.setObjectName("open_simulation")
+        self.open_new_simulation = QtWidgets.QPushButton(self.tab)
+        self.open_new_simulation.setGeometry(QtCore.QRect(730, 430, 211, 31))
+        self.open_new_simulation.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FFFFFF;\n"
 "    border-radius:6px;\n"
@@ -145,7 +148,31 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.LoginButton_2.setObjectName("LoginButton_2")
+        self.open_new_simulation.setObjectName("open_new_simulation")
+        self.comboBox = QtWidgets.QComboBox(self.tab)
+        self.comboBox.setGeometry(QtCore.QRect(290, 40, 181, 31))
+        self.comboBox.setStyleSheet("font: 87 10pt \"Roboto Black\";\n"
+"background-color: rgb(121, 180, 183);\n"
+"color: rgb(34, 40, 49);\n"
+"border-radius:5px;\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.comboBox.setObjectName("comboBox")
+        self.label_15 = QtWidgets.QLabel(self.tab)
+        self.label_15.setGeometry(QtCore.QRect(20, 30, 251, 41))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Black")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(10)
+        self.label_15.setFont(font)
+        self.label_15.setStyleSheet("font: 87 10pt \"Roboto Black\";\n"
+"color:   rgb(21,76,121);\n"
+"color: #000000;")
+        self.label_15.setObjectName("label_15")
         self.tabWidget.addTab(self.tab, "")
         self.Simulation = QtWidgets.QWidget()
         self.Simulation.setObjectName("Simulation")
@@ -859,7 +886,7 @@ class Ui_mainwindow(object):
 
         self.retranslateUi(mainwindow)
         self.tabWidget.setCurrentIndex(0)
-        self.tabWidget_2.setCurrentIndex(5)
+        self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, mainwindow):
@@ -871,8 +898,9 @@ class Ui_mainwindow(object):
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Date"))
         self.label.setText(_translate("mainwindow", "You can see you history of simulations here :"))
-        self.LoginButton.setText(_translate("mainwindow", "Open simulation"))
-        self.LoginButton_2.setText(_translate("mainwindow", "Open new simulation"))
+        self.open_simulation.setText(_translate("mainwindow", "Open simulation"))
+        self.open_new_simulation.setText(_translate("mainwindow", "Open new simulation"))
+        self.label_15.setText(_translate("mainwindow", "You can select you simulation :"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("mainwindow", "History"))
         self.label_2.setText(_translate("mainwindow", "The number of types of injected gas :"))
         self.propertice_next.setText(_translate("mainwindow", "Next >"))

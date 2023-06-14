@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
+import os
 
 
 ui, _ = loadUiType('project/Apps.ui')
@@ -31,14 +32,14 @@ class Login(QMainWindow, login):
         password = self.password.text()
 
         Users = pandas.read_excel(
-            'back/User_Information.xlsx', header=None).values
+            'project/back/User_Information.xlsx', header=None).values
 
         for user in Users[1:]:
             Username = user[0]
             Password = user[1]
             if Username == username and str(Password) == password:
                 print('OK')
-                self.login()
+                self.login(username)
             else:
                 self.label_2.setText(
                     "Your Username or Password is not correct !")
@@ -49,8 +50,8 @@ class Login(QMainWindow, login):
         self.LoginButton.clicked.connect(self.handel_login)
         self.CreateButton.clicked.connect(self.create_user)
 
-    def login(self):
-        self.window = MainApp()
+    def login(self, username):
+        self.window = MainApp(username)
         self.hide()
         self.window.show()
         app.exec_()
@@ -85,7 +86,7 @@ class CreateUser(QMainWindow, create_user):
         user_from_db = []
 
         Users = pandas.read_excel(
-            'back/User_Information.xlsx', header=None).values
+            'project/back/User_Information.xlsx', header=None).values
 
         for user in Users[1:]:
             user_from_db.append(user[0])
@@ -105,7 +106,8 @@ class CreateUser(QMainWindow, create_user):
             self.statusBar().showMessage('You must enter valid email address!')
         else:
 
-            df = pandas.read_excel('back/User_Information.xlsx', header=None)
+            df = pandas.read_excel(
+                'project/back/User_Information.xlsx', header=None)
 
             data = [
                 [username, password, gmail]
@@ -114,20 +116,20 @@ class CreateUser(QMainWindow, create_user):
             new_df = df.append(pandas.DataFrame(data), ignore_index=True)
 
             # Save the updated DataFrame to the Excel file
-            new_df.to_excel('back/User_Information.xlsx',
+            new_df.to_excel('project/back/User_Information.xlsx',
                             header=None, index=False)
 
-            self.create_user()
+            self.create_user(username)
 
-    def create_user(self):
-        self.window = MainApp()
+    def create_user(self, username):
+        self.window = MainApp(username)
         self.hide()
         self.window.show()
         app.exec_()
 
 
 class MainApp(QMainWindow, ui):
-    def __init__(self):
+    def __init__(self, username):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.Handel_UI_Changes()
@@ -135,7 +137,31 @@ class MainApp(QMainWindow, ui):
         self.setWindowTitle("Ejector Simulation App")
         self.setWindowIcon(QIcon('project/python.png'))
         self.calasic_theme()
-        self.writer = pd.ExcelWriter('project/back/output2.xls')
+
+        df = pd.read_excel('project/back/User_Information.xlsx')
+
+        # Filter the rows for the specific user
+        user_rows = df[df['username'] == username]
+
+        # Access the "simulations" column for the specific user
+        simulations_column = user_rows['simulations']
+
+        # Print the values in the "simulations" column
+        for value in simulations_column:
+
+            self.comboBox.addItem(value)
+
+        # Set the current item
+        self.comboBox.setCurrentIndex(0)
+
+        for simulation_number in range(10):
+            self.file_path = f"project/back/Save_simulation/{username}_simulation_{simulation_number}.xls"
+            if os.path.exists(self.file_path):
+                print("File exists", username)
+            else:
+                print(f"create {self.file_path}")
+                self.writer = pd.ExcelWriter(self.file_path)
+                break
         self.gls_properties = {}
 
     def Handel_UI_Changes(self):
@@ -150,6 +176,7 @@ class MainApp(QMainWindow, ui):
         self.dark_blue.clicked.connect(self.dark_blue_theme)
         self.mnjaromix.clicked.connect(self.mnjaromix_theme)
         self.Earth.clicked.connect(self.Earth_theme)
+        self.open_simulation.clicked.connect(self.open_simulations)
         self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
         self.propertice_next.setEnabled(False)
 
@@ -221,6 +248,11 @@ class MainApp(QMainWindow, ui):
 
         self.bellow_table.cellChanged.connect(
             lambda: bellow_get_data(self))
+
+    def open_simulations(self):
+        file_path = self.comboBox.currentText()
+        run = Run()
+        run.run(f"project/back/Save_simulation/{file_path}")
 
     def specific_heat_gas_Tab(self):
 
@@ -331,15 +363,28 @@ class MainApp(QMainWindow, ui):
         pass
 
     def simulation(self):
-        run = Run()
 
-        # Call the run() method and provide the required arguments
-        run.run('project/back/input.xls')
+        try:
+            run = Run()
+            # Call the run() method and provide the required arguments
+            run.run(self.file_path)
+        except:
+            try:
+                os.remove(self.file_path)
+                print(f"The file '{self.file_path}' has been deleted.")
+            except FileNotFoundError:
+                print(f"The file '{self.file_path}' does not exist.")
+            except PermissionError:
+                print(
+                    f"You do not have permission to delete the file '{self.file_path}'.")
+            except Exception as e:
+                print(
+                    f"An error occurred while deleting the file '{self.file_path}': {e}")
 
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainApp()
+    window = Login()
     window.show()
     app.exec_()
 
