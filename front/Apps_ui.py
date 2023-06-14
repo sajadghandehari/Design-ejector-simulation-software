@@ -442,7 +442,7 @@ class Ui_mainwindow(object):
         self.label_7.setGeometry(QtCore.QRect(35, 300, 231, 30))
         self.label_7.setObjectName("label_7")
         self.lineEdit_7 = QtWidgets.QLineEdit(self.tab_6)
-        self.lineEdit_7.setGeometry(QtCore.QRect(390, 360, 113, 28))
+        self.lineEdit_7.setGeometry(QtCore.QRect(385, 360, 113, 28))
         self.lineEdit_7.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
 "background-color: rgb(121, 180, 183);\n"
 "color: rgb(34, 40, 49);\n"
@@ -456,7 +456,7 @@ class Ui_mainwindow(object):
         self.label_8.setGeometry(QtCore.QRect(40, 360, 261, 30))
         self.label_8.setObjectName("label_8")
         self.lineEdit_8 = QtWidgets.QLineEdit(self.tab_6)
-        self.lineEdit_8.setGeometry(QtCore.QRect(390, 420, 113, 28))
+        self.lineEdit_8.setGeometry(QtCore.QRect(385, 420, 113, 28))
         self.lineEdit_8.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
 "background-color: rgb(121, 180, 183);\n"
 "color: rgb(34, 40, 49);\n"
@@ -512,7 +512,7 @@ class Ui_mainwindow(object):
         self.label_21.setGeometry(QtCore.QRect(580, 240, 180, 30))
         self.label_21.setObjectName("label_21")
         self.lineEdit_21 = QtWidgets.QLineEdit(self.tab_6)
-        self.lineEdit_21.setGeometry(QtCore.QRect(890, 330, 113, 28))
+        self.lineEdit_21.setGeometry(QtCore.QRect(890, 360, 113, 28))
         self.lineEdit_21.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
 "background-color: rgb(121, 180, 183);\n"
 "color: rgb(34, 40, 49);\n"
@@ -523,7 +523,7 @@ class Ui_mainwindow(object):
 "")
         self.lineEdit_21.setObjectName("lineEdit_21")
         self.label_22 = QtWidgets.QLabel(self.tab_6)
-        self.label_22.setGeometry(QtCore.QRect(580, 300, 281, 81))
+        self.label_22.setGeometry(QtCore.QRect(580, 330, 281, 81))
         self.label_22.setWordWrap(True)
         self.label_22.setObjectName("label_22")
         self.lineEdit_17 = QtWidgets.QLineEdit(self.tab_6)
@@ -551,6 +551,20 @@ class Ui_mainwindow(object):
 "}\n"
 "")
         self.gls_properties_next.setObjectName("gls_properties_next")
+        self.lineEdit_22 = QtWidgets.QLineEdit(self.tab_6)
+        self.lineEdit_22.setGeometry(QtCore.QRect(890, 300, 113, 28))
+        self.lineEdit_22.setStyleSheet("font: 75 8pt \"Calibri (Body)\";\n"
+"background-color: rgb(121, 180, 183);\n"
+"color: rgb(34, 40, 49);\n"
+"border-radius:5px;\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.lineEdit_22.setObjectName("lineEdit_22")
+        self.label_23 = QtWidgets.QLabel(self.tab_6)
+        self.label_23.setGeometry(QtCore.QRect(580, 300, 180, 30))
+        self.label_23.setObjectName("label_23")
         self.tabWidget_2.addTab(self.tab_6, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
@@ -592,9 +606,9 @@ class Ui_mainwindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.gls_properties_table.setHorizontalHeaderItem(2, item)
         self.gls_properties_table.horizontalHeader().setDefaultSectionSize(249)
-        self.pushButton5_6 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton5_6.setGeometry(QtCore.QRect(760, 450, 160, 28))
-        self.pushButton5_6.setStyleSheet("QPushButton {\n"
+        self.gls_properties2_next = QtWidgets.QPushButton(self.tab_2)
+        self.gls_properties2_next.setGeometry(QtCore.QRect(760, 450, 160, 28))
+        self.gls_properties2_next.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FF0000;\n"
 "    border-radius:6px;\n"
@@ -602,7 +616,7 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton5_6.setObjectName("pushButton5_6")
+        self.gls_properties2_next.setObjectName("gls_properties2_next")
         self.label_39 = QtWidgets.QLabel(self.tab_2)
         self.label_39.setGeometry(QtCore.QRect(120, 50, 141, 30))
         self.label_39.setObjectName("label_39")
@@ -656,9 +670,9 @@ class Ui_mainwindow(object):
         item = QtWidgets.QTableWidgetItem()
         self.bellow_table.setHorizontalHeaderItem(1, item)
         self.bellow_table.horizontalHeader().setDefaultSectionSize(374)
-        self.pushButton5_5 = QtWidgets.QPushButton(self.tab_7)
-        self.pushButton5_5.setGeometry(QtCore.QRect(760, 450, 160, 28))
-        self.pushButton5_5.setStyleSheet("QPushButton {\n"
+        self.calculate_Button = QtWidgets.QPushButton(self.tab_7)
+        self.calculate_Button.setGeometry(QtCore.QRect(760, 450, 160, 28))
+        self.calculate_Button.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FF0000;\n"
 "    border-radius:6px;\n"
@@ -666,7 +680,7 @@ class Ui_mainwindow(object):
 "\n"
 "}\n"
 "")
-        self.pushButton5_5.setObjectName("pushButton5_5")
+        self.calculate_Button.setObjectName("calculate_Button")
         self.label_40 = QtWidgets.QLabel(self.tab_7)
         self.label_40.setGeometry(QtCore.QRect(120, 50, 141, 30))
         self.label_40.setObjectName("label_40")
@@ -845,7 +859,7 @@ class Ui_mainwindow(object):
 
         self.retranslateUi(mainwindow)
         self.tabWidget.setCurrentIndex(1)
-        self.tabWidget_2.setCurrentIndex(4)
+        self.tabWidget_2.setCurrentIndex(5)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
     def retranslateUi(self, mainwindow):
@@ -903,9 +917,10 @@ class Ui_mainwindow(object):
         self.label_19.setText(_translate("mainwindow", "API gravity :"))
         self.label_20.setText(_translate("mainwindow", "Production tube(in) :"))
         self.label_21.setText(_translate("mainwindow", "Orifice diameter(in) :"))
-        self.label_22.setText(_translate("mainwindow", "The angle of the axis of the production tube and the analos with the vertical axis :"))
+        self.label_22.setText(_translate("mainwindow", "The angle of the axis of the production tube and the analos with the vertical axis:"))
         self.label_18.setText(_translate("mainwindow", "Water cut :"))
         self.gls_properties_next.setText(_translate("mainwindow", "Next >"))
+        self.label_23.setText(_translate("mainwindow", "cassing Dia(in) :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), _translate("mainwindow", "GLS Properties "))
         item = self.gls_properties_table.horizontalHeaderItem(0)
         item.setText(_translate("mainwindow", "Injection pressure(Psig)"))
@@ -913,14 +928,14 @@ class Ui_mainwindow(object):
         item.setText(_translate("mainwindow", "Well pressure changes(Psig)"))
         item = self.gls_properties_table.horizontalHeaderItem(2)
         item.setText(_translate("mainwindow", "Surface temperature (R)"))
-        self.pushButton5_6.setText(_translate("mainwindow", "Next >"))
+        self.gls_properties2_next.setText(_translate("mainwindow", "Next >"))
         self.label_39.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_2), _translate("mainwindow", "GLS Properties page 2"))
         item = self.bellow_table.horizontalHeaderItem(0)
-        item.setText(_translate("mainwindow", "Bellows Phenrite stress changes(Psig)"))
-        item = self.bellow_table.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Length change(in)"))
-        self.pushButton5_5.setText(_translate("mainwindow", "Next >"))
+        item = self.bellow_table.horizontalHeaderItem(1)
+        item.setText(_translate("mainwindow", "Bellows Phenrite stress changes(Psig)"))
+        self.calculate_Button.setText(_translate("mainwindow", "calculate"))
         self.label_40.setText(_translate("mainwindow", "number of row :"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_7), _translate("mainwindow", "Bellow"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Simulation), _translate("mainwindow", "Simulation"))

@@ -160,6 +160,12 @@ class MainApp(QMainWindow, ui):
         self.gls_properties_next.clicked.connect(
             lambda: self.tabWidget_2.setCurrentIndex(4))
         self.gls_properties_next.setEnabled(False)
+        self.gls_properties2_next.clicked.connect(
+            lambda: self.tabWidget_2.setCurrentIndex(5))
+        self.gls_properties2_next.setEnabled(False)
+        self.calculate_Button.clicked.connect(
+            lambda: self.simulation())
+        self.calculate_Button.setEnabled(True)
 
         self.gas_propertice_input.returnPressed.connect(
             lambda: self.set_row('A'))
@@ -196,6 +202,8 @@ class MainApp(QMainWindow, ui):
             'Orifice diameter(in)', self.lineEdit_20))
         self.lineEdit_21.returnPressed.connect(lambda: self.get_gls_properties(
             'The angle of the axis of the production tube and the analos with the vertical axis', self.lineEdit_21))
+        self.lineEdit_22.returnPressed.connect(lambda: self.get_gls_properties(
+            'cassing Dia(in)', self.lineEdit_22))
 
         self.properties_table.cellChanged.connect(
             lambda: table_propertise_get_data(self))
@@ -262,7 +270,7 @@ class MainApp(QMainWindow, ui):
             self.statusBar().setPalette(palette)
             self.gls_properties[name] = value.text()
             self.statusBar().showMessage(f'save {name} successfuly')
-            if len(self.gls_properties) == 12:
+            if len(self.gls_properties) == 13:
                 self.gls_properties_next.setEnabled(True)
                 self.gls_properties_next.setStyleSheet(
                     "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
@@ -319,6 +327,9 @@ class MainApp(QMainWindow, ui):
     def tab(self):
         self.tabWidget.setTabEnabled(1, False)
         pass
+
+    # def simulation(self):
+    #     run('back/input.xls')
 
 
 if __name__ == '__main__':

@@ -99,7 +99,7 @@ def save_data(self):
 
     # Write the DataFrame to an Excel file
     df.to_excel(
-        self.writer, sheet_name='GLS_properties', header=header_names, index=False)
+        self.writer, sheet_name='gas properties', header=header_names, index=False)
     # self.writer.save()
 
     # Handel_Buttons(self)
@@ -280,12 +280,173 @@ def enthalpy_gas_save_data(self):
     df.to_excel(
         self.writer, sheet_name='entalpy_gas', header=header_names, index=False)
 
-    self.writer.close()
-
 
 def gls_properties_get_data(self):
-    pass
+    # get the number of rows and columns in the table
+    num_rows = self.gls_properties_table.rowCount()
+    num_cols = self.gls_properties_table.columnCount()
+
+    # create an empty list to store the table data
+    self.table_data = []
+    palette = self.statusBar().palette()
+    palette.setColor(self.statusBar().foregroundRole(),
+                     Qt.red)  # Set the text color to red
+    self.statusBar().setPalette(palette)
+
+    # iterate through each cell in the table and append its text to the list
+    for row in range(num_rows):
+        current_row = []
+        for col in range(num_cols):
+            item = self.gls_properties_table.item(row, col)
+            current_row.append(item.text() if item is not None else "")
+        self.table_data.append(current_row)
+
+    self.statusBar().showMessage(f'')
+
+    table_row = len(self.table_data)
+    table_row_count = 0
+
+    for cell in self.table_data:
+
+        if '' not in cell:
+
+            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+
+                table_row_count += 1
+                if table_row == table_row_count:
+                    # save_data(self)
+                    print(self.table_data)
+                    gls_properties_save_data(self)
+                    self.gls_properties2_next.setEnabled(True)
+                    print('OOK')
+
+            else:
+                self.gls_properties2_next.setStyleSheet(
+                    "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
+                self.gls_properties2_next.setEnabled(False)
+
+        else:
+            self.gls_properties2_next.setStyleSheet(
+                "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
+            self.gls_properties2_next.setEnabled(False)
+
+
+def gls_properties_save_data(self):
+    self.gls_properties2_next.setStyleSheet(
+        "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
+
+    header_names = []
+    header = ['Environment Temperature(R)', 'Environment Pressure(Psig)',
+              'Installation height of operating valve(Mft)', 'Bellows Pressure(Psig)',
+              'Fenrit Bellows tension(Psig)', 'Cross section of Bellows(in^2)',
+              'Cross section of Pilot(in^2)', 'Production tube(in)',
+              'Orifice diameter(in)', 'cassing Dia(in)',
+              'The angle of the axis of the production tube and the analos with the vertical axis',
+              'API gravity', 'Water cut', 'n_tab']
+    header_reversed = header[::-1]
+
+    for col in range(self.gls_properties_table.columnCount()):
+        header_item = self.gls_properties_table.horizontalHeaderItem(col)
+        if header_item is not None:
+            header_names.append(header_item.text())
+
+    for head in header_reversed:
+        row = 0
+        for cell in self.table_data:
+            if row == 0:
+                if head == 'n_tab':
+                    cell.insert(0, len(self.table_data))
+                else:
+                    cell.insert(0, self.gls_properties[head])
+
+            else:
+                cell.insert(0, '')
+
+            row += 1
+
+    df = pd.DataFrame(self.table_data)
+
+    # Write the DataFrame to an Excel file
+    df.to_excel(
+        self.writer, sheet_name='GLS_properties', header=header+header_names, index=False)
 
 
 def bellow_get_data(self):
-    pass
+    # get the number of rows and columns in the table
+    num_rows = self.bellow_table.rowCount()
+    num_cols = self.bellow_table.columnCount()
+
+    # create an empty list to store the table data
+    self.table_data = []
+    palette = self.statusBar().palette()
+    palette.setColor(self.statusBar().foregroundRole(),
+                     Qt.red)  # Set the text color to red
+    self.statusBar().setPalette(palette)
+
+    # iterate through each cell in the table and append its text to the list
+    for row in range(num_rows):
+        current_row = []
+        for col in range(num_cols):
+            item = self.bellow_table.item(row, col)
+            current_row.append(item.text() if item is not None else "")
+        self.table_data.append(current_row)
+
+    self.statusBar().showMessage(f'')
+
+    table_row = len(self.table_data)
+    table_row_count = 0
+
+    for cell in self.table_data:
+
+        if '' not in cell:
+
+            if all(isinstance(cell[i], str) and cell[i].isdigit() for i in range(0, num_cols)):
+
+                table_row_count += 1
+                if table_row == table_row_count:
+                    # save_data(self)
+                    print(self.table_data)
+                    bellow_save_data(self)
+                    self.calculate_Button.setEnabled(True)
+
+            else:
+                self.calculate_Button.setStyleSheet(
+                    "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
+                self.calculate_Button.setEnabled(False)
+
+        else:
+            self.calculate_Button.setStyleSheet(
+                "background-color:rgb(157, 157, 157); color:#FF0000 ;border-radius:6px ;border-style:solid;")
+            self.calculate_Button.setEnabled(False)
+
+
+def bellow_save_data(self):
+
+    self.calculate_Button.setStyleSheet(
+        "background-color:rgb(157, 157, 157); color:#00FF7F ;border-radius:6px ;border-style:dotted;")
+
+    header_names = ['number']
+    for col in range(self.bellow_table.columnCount()):
+        header_item = self.bellow_table.horizontalHeaderItem(col)
+        if header_item is not None:
+            header_names.append(header_item.text())
+
+    print(header_names)
+
+    row = 0
+    for cell in self.table_data:
+        if row == 0:
+            cell.insert(0, len(self.table_data))
+        else:
+            cell.insert(0, '')
+
+        row += 1
+
+    print(self.table_data)
+
+    df = pd.DataFrame(self.table_data)
+
+    # Write the DataFrame to an Excel file
+    df.to_excel(
+        self.writer, sheet_name='Bellows', header=header_names, index=False)
+    self.writer.close()

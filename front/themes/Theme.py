@@ -81,14 +81,14 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
     if color_D == 'rgb(248, 240, 223)':
         color_D = 'rgb(34, 40, 49)'
 
-    label_ranges = [(2, 10), (18, 23), (37, 41)]
+    label_ranges = [(2, 10), (18, 24), (37, 41)]
     for start, end in label_ranges:
         for i in range(start, end):
             label = getattr(self, f"label_{i}")
             label.setStyleSheet(
                 f"color:{color_D};font: 87 9pt 'Roboto Black';")
 
-    line_edit_ranges = [(2, 9), (17, 22)]
+    line_edit_ranges = [(2, 9), (17, 23)]
     for start, end in line_edit_ranges:
         for i in range(start, end):
             line_edit = getattr(self, f"lineEdit_{i}")

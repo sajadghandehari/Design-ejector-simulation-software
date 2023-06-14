@@ -355,7 +355,7 @@ color: #000000;</string>
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>5</number>
       </property>
       <property name="usesScrollButtons">
        <bool>false</bool>
@@ -910,7 +910,7 @@ border-radius:5px;
        <widget class="QLineEdit" name="lineEdit_7">
         <property name="geometry">
          <rect>
-          <x>390</x>
+          <x>385</x>
           <y>360</y>
           <width>113</width>
           <height>28</height>
@@ -943,7 +943,7 @@ border-radius:5px;
        <widget class="QLineEdit" name="lineEdit_8">
         <property name="geometry">
          <rect>
-          <x>390</x>
+          <x>385</x>
           <y>420</y>
           <width>113</width>
           <height>28</height>
@@ -1076,7 +1076,7 @@ border-radius:5px;
         <property name="geometry">
          <rect>
           <x>890</x>
-          <y>330</y>
+          <y>360</y>
           <width>113</width>
           <height>28</height>
          </rect>
@@ -1096,13 +1096,13 @@ border-radius:5px;
         <property name="geometry">
          <rect>
           <x>580</x>
-          <y>300</y>
+          <y>330</y>
           <width>281</width>
           <height>81</height>
          </rect>
         </property>
         <property name="text">
-         <string>The angle of the axis of the production tube and the analos with the vertical axis :</string>
+         <string>The angle of the axis of the production tube and the analos with the vertical axis:</string>
         </property>
         <property name="wordWrap">
          <bool>true</bool>
@@ -1162,6 +1162,39 @@ border-radius:5px;
         </property>
         <property name="text">
          <string>Next &gt;</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_22">
+        <property name="geometry">
+         <rect>
+          <x>890</x>
+          <y>300</y>
+          <width>113</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 75 8pt &quot;Calibri (Body)&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius:5px;
+
+
+
+</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_23">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>300</y>
+          <width>180</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>cassing Dia(in) :</string>
         </property>
        </widget>
       </widget>
@@ -1240,7 +1273,7 @@ QHeaderView::section {
          </property>
         </column>
        </widget>
-       <widget class="QPushButton" name="pushButton5_6">
+       <widget class="QPushButton" name="gls_properties2_next">
         <property name="geometry">
          <rect>
           <x>760</x>
@@ -1358,16 +1391,16 @@ QHeaderView::section {
         <row/>
         <column>
          <property name="text">
-          <string>Bellows Phenrite stress changes(Psig)</string>
+          <string>Length change(in)</string>
          </property>
         </column>
         <column>
          <property name="text">
-          <string>Length change(in)</string>
+          <string>Bellows Phenrite stress changes(Psig)</string>
          </property>
         </column>
        </widget>
-       <widget class="QPushButton" name="pushButton5_5">
+       <widget class="QPushButton" name="calculate_Button">
         <property name="geometry">
          <rect>
           <x>760</x>
@@ -1387,7 +1420,7 @@ QHeaderView::section {
 </string>
         </property>
         <property name="text">
-         <string>Next &gt;</string>
+         <string>calculate</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_40">
