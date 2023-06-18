@@ -2,11 +2,13 @@ from back.main import *
 from back.main import Run
 from simulation.simulation_data import *
 from themes.Theme import *
+from gmail_service.gmail import send_email
 from PyQt5.uic import loadUiType
 import pandas
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
+import random
 import sys
 import os
 
@@ -14,6 +16,7 @@ import os
 ui, _ = loadUiType('project/Apps.ui')
 create_user, _ = loadUiType('project/Createusername.ui')
 login, _ = loadUiType('project/Login.ui')
+recovery_pass, _ = loadUiType('project/recovery_password.ui')
 
 
 class Login(QMainWindow, login):
@@ -49,9 +52,16 @@ class Login(QMainWindow, login):
 
         self.LoginButton.clicked.connect(self.handel_login)
         self.CreateButton.clicked.connect(self.create_user)
+        self.forgot_password.clicked.connect(self.recovery_password)
 
     def login(self, username):
         self.window = MainApp(username)
+        self.hide()
+        self.window.show()
+        app.exec_()
+
+    def recovery_password(self):
+        self.window = RecoveryPassword()
         self.hide()
         self.window.show()
         app.exec_()
@@ -128,6 +138,62 @@ class CreateUser(QMainWindow, create_user):
         app.exec_()
 
 
+class RecoveryPassword(QMainWindow, recovery_pass):
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+
+        self.setWindowTitle("Recovery password")
+        self.setWindowIcon(QIcon('project/python.png'))
+
+        self.Handel_Buttons()
+
+    def Handel_Buttons(self):
+
+        self.RecoveryButton.clicked.connect(self.recovery_pass)
+        self.LoginpageButton.clicked.connect(self.login_page)
+
+    def recovery_pass(self):
+
+        username = self.username.text()
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         Qt.red)  # Set the text color to red
+        self.statusBar().setPalette(palette)
+
+        user_from_db = []
+
+        Users = pandas.read_excel(
+            'project/back/User_Information.xlsx', header=None).values
+        df = pd.read_excel('project/back/User_Information.xlsx')
+
+        for user in Users[1:]:
+            if user[0] == username:
+                print(user[2])
+                random_number = random.randint(10000000, 99999999)
+                subject = f"Hi {username}"
+                body = f"""We generate and set new password for you, Please do not share with others.
+your new password : {random_number}"""
+                recipients = user[2]
+                sender_email = "ejectorsimulation@gmail.com"
+                password = "ljnbjfmpithsywvg"
+                print(user[1])
+                send_email(subject, body, sender_email,
+                           recipients, password)
+                # Users['password'] = Users['password'].replace(
+                #     str(user[1]), str(random_number))
+
+                # Save the modified DataFrame back to the Excel file
+                df['password'] = df['password'].replace(user[1], random_number)
+                df.to_excel('project/back/User_Information.xlsx', index=False)
+
+    def login_page(self):
+        self.window = Login()
+        self.hide()
+        self.window.show()
+        app.exec_()
+
+
 class MainApp(QMainWindow, ui):
     def __init__(self, username):
         QMainWindow.__init__(self)
@@ -176,7 +242,7 @@ class MainApp(QMainWindow, ui):
         self.dark_blue.clicked.connect(self.dark_blue_theme)
         self.mnjaromix.clicked.connect(self.mnjaromix_theme)
         self.Earth.clicked.connect(self.Earth_theme)
-        self.open_simulation.clicked.connect(self.open_simulations)
+        self.open_simulation.clicked.connect(self.open_file_dialog)
         self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
         self.propertice_next.setEnabled(False)
 
@@ -381,10 +447,16 @@ class MainApp(QMainWindow, ui):
                 print(
                     f"An error occurred while deleting the file '{self.file_path}': {e}")
 
+    def open_file_dialog(self):
+        file_dialog = QFileDialog()
+        file_path, _ = file_dialog.getOpenFileName(self, "Open File")
+
+        print("Selected file:", file_path)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = Login()
+    window = MainApp('Sajad')
     window.show()
     app.exec_()
 
