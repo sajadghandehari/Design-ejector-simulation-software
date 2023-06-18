@@ -133,7 +133,7 @@ color: #000000;
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>160</y>
+        <y>190</y>
         <width>921</width>
         <height>241</height>
        </rect>
@@ -252,12 +252,17 @@ QHeaderView::section {
         <string>Date</string>
        </property>
       </column>
+      <item row="0" column="0">
+       <property name="textAlignment">
+        <set>AlignCenter</set>
+       </property>
+      </item>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>110</y>
+        <y>140</y>
         <width>411</width>
         <height>41</height>
        </rect>
@@ -284,7 +289,7 @@ color: #000000;</string>
       <property name="geometry">
        <rect>
         <x>510</x>
-        <y>430</y>
+        <y>460</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -307,7 +312,7 @@ color: #000000;</string>
       <property name="geometry">
        <rect>
         <x>730</x>
-        <y>430</y>
+        <y>460</y>
         <width>211</width>
         <height>31</height>
        </rect>
@@ -329,7 +334,7 @@ color: #000000;</string>
      <widget class="QComboBox" name="comboBox">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>370</x>
         <y>40</y>
         <width>181</width>
         <height>31</height>
@@ -371,6 +376,56 @@ color: #000000;</string>
       </property>
       <property name="text">
        <string>You can select you simulation :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>90</y>
+        <width>311</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Roboto Black</family>
+        <pointsize>10</pointsize>
+        <weight>10</weight>
+        <italic>false</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 87 10pt &quot;Roboto Black&quot;;
+color:   rgb(21,76,121);
+color: #000000;</string>
+      </property>
+      <property name="text">
+       <string>You can insert excel file for simulation :</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="insert_file">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>98</y>
+        <width>100</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 87 9pt &quot;Roboto Black&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius: 4px;
+
+
+
+</string>
+      </property>
+      <property name="text">
+       <string>choose file</string>
       </property>
      </widget>
     </widget>

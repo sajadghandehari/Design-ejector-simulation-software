@@ -61,7 +61,7 @@ class Ui_mainwindow(object):
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
         self.tableWidget = QtWidgets.QTableWidget(self.tab)
-        self.tableWidget.setGeometry(QtCore.QRect(20, 160, 921, 241))
+        self.tableWidget.setGeometry(QtCore.QRect(20, 190, 921, 241))
         self.tableWidget.setMouseTracking(False)
         self.tableWidget.setStyleSheet("QTableWidget {\n"
 "\n"
@@ -103,6 +103,9 @@ class Ui_mainwindow(object):
         self.tableWidget.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableWidget.setHorizontalHeaderItem(1, item)
+        item = QtWidgets.QTableWidgetItem()
+        item.setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tableWidget.setItem(0, 0, item)
         self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(449)
@@ -115,7 +118,7 @@ class Ui_mainwindow(object):
         self.tableWidget.verticalHeader().setMinimumSectionSize(30)
         self.tableWidget.verticalHeader().setSortIndicatorShown(False)
         self.label = QtWidgets.QLabel(self.tab)
-        self.label.setGeometry(QtCore.QRect(20, 110, 411, 41))
+        self.label.setGeometry(QtCore.QRect(20, 140, 411, 41))
         font = QtGui.QFont()
         font.setFamily("Roboto Black")
         font.setPointSize(10)
@@ -128,7 +131,7 @@ class Ui_mainwindow(object):
 "color: #000000;")
         self.label.setObjectName("label")
         self.open_simulation = QtWidgets.QPushButton(self.tab)
-        self.open_simulation.setGeometry(QtCore.QRect(510, 430, 211, 31))
+        self.open_simulation.setGeometry(QtCore.QRect(510, 460, 211, 31))
         self.open_simulation.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FFFFFF;\n"
@@ -139,7 +142,7 @@ class Ui_mainwindow(object):
 "")
         self.open_simulation.setObjectName("open_simulation")
         self.open_new_simulation = QtWidgets.QPushButton(self.tab)
-        self.open_new_simulation.setGeometry(QtCore.QRect(730, 430, 211, 31))
+        self.open_new_simulation.setGeometry(QtCore.QRect(730, 460, 211, 31))
         self.open_new_simulation.setStyleSheet("QPushButton {\n"
 "    background-color: rgb(157, 157, 157);\n"
 "    color: #FFFFFF;\n"
@@ -150,7 +153,7 @@ class Ui_mainwindow(object):
 "")
         self.open_new_simulation.setObjectName("open_new_simulation")
         self.comboBox = QtWidgets.QComboBox(self.tab)
-        self.comboBox.setGeometry(QtCore.QRect(290, 40, 181, 31))
+        self.comboBox.setGeometry(QtCore.QRect(370, 40, 181, 31))
         self.comboBox.setStyleSheet("font: 87 10pt \"Roboto Black\";\n"
 "background-color: rgb(121, 180, 183);\n"
 "color: rgb(34, 40, 49);\n"
@@ -173,6 +176,30 @@ class Ui_mainwindow(object):
 "color:   rgb(21,76,121);\n"
 "color: #000000;")
         self.label_15.setObjectName("label_15")
+        self.label_16 = QtWidgets.QLabel(self.tab)
+        self.label_16.setGeometry(QtCore.QRect(20, 90, 311, 41))
+        font = QtGui.QFont()
+        font.setFamily("Roboto Black")
+        font.setPointSize(10)
+        font.setBold(False)
+        font.setItalic(False)
+        font.setWeight(10)
+        self.label_16.setFont(font)
+        self.label_16.setStyleSheet("font: 87 10pt \"Roboto Black\";\n"
+"color:   rgb(21,76,121);\n"
+"color: #000000;")
+        self.label_16.setObjectName("label_16")
+        self.insert_file = QtWidgets.QPushButton(self.tab)
+        self.insert_file.setGeometry(QtCore.QRect(370, 98, 100, 28))
+        self.insert_file.setStyleSheet("font: 87 9pt \"Roboto Black\";\n"
+"background-color: rgb(121, 180, 183);\n"
+"color: rgb(34, 40, 49);\n"
+"border-radius: 4px;\n"
+"\n"
+"\n"
+"\n"
+"")
+        self.insert_file.setObjectName("insert_file")
         self.tabWidget.addTab(self.tab, "")
         self.Simulation = QtWidgets.QWidget()
         self.Simulation.setObjectName("Simulation")
@@ -897,10 +924,15 @@ class Ui_mainwindow(object):
         item.setText(_translate("mainwindow", "File"))
         item = self.tableWidget.horizontalHeaderItem(1)
         item.setText(_translate("mainwindow", "Date"))
+        __sortingEnabled = self.tableWidget.isSortingEnabled()
+        self.tableWidget.setSortingEnabled(False)
+        self.tableWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("mainwindow", "You can see you history of simulations here :"))
         self.open_simulation.setText(_translate("mainwindow", "Open simulation"))
         self.open_new_simulation.setText(_translate("mainwindow", "Open new simulation"))
         self.label_15.setText(_translate("mainwindow", "You can select you simulation :"))
+        self.label_16.setText(_translate("mainwindow", "You can insert excel file for simulation :"))
+        self.insert_file.setText(_translate("mainwindow", "choose file"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("mainwindow", "History"))
         self.label_2.setText(_translate("mainwindow", "The number of types of injected gas :"))
         self.propertice_next.setText(_translate("mainwindow", "Next >"))

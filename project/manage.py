@@ -11,6 +11,8 @@ from PyQt5.QtCore import *
 import random
 import sys
 import os
+import shutil
+import datetime
 
 
 ui, _ = loadUiType('project/Apps.ui')
@@ -177,7 +179,7 @@ your new password : {random_number}"""
                 recipients = user[2]
                 sender_email = "ejectorsimulation@gmail.com"
                 password = "ljnbjfmpithsywvg"
-                print(user[1])
+
                 send_email(subject, body, sender_email,
                            recipients, password)
                 # Users['password'] = Users['password'].replace(
@@ -199,52 +201,43 @@ class MainApp(QMainWindow, ui):
         QMainWindow.__init__(self)
         self.setupUi(self)
         self.Handel_UI_Changes()
-        self.Handel_Buttons()
+        self.Handel_Buttons(username)
         self.setWindowTitle("Ejector Simulation App")
         self.setWindowIcon(QIcon('project/python.png'))
         self.calasic_theme()
+        self.update_combobox(username)
 
-        df = pd.read_excel('project/back/User_Information.xlsx')
+        print(self.username)
 
-        # Filter the rows for the specific user
-        user_rows = df[df['username'] == username]
-
-        # Access the "simulations" column for the specific user
-        simulations_column = user_rows['simulations']
-
-        # Print the values in the "simulations" column
-        for value in simulations_column:
-
-            self.comboBox.addItem(value)
-
-        # Set the current item
-        self.comboBox.setCurrentIndex(0)
-
-        for simulation_number in range(10):
-            self.file_path = f"project/back/Save_simulation/{username}_simulation_{simulation_number}.xls"
-            if os.path.exists(self.file_path):
-                print("File exists", username)
-            else:
-                print(f"create {self.file_path}")
-                self.writer = pd.ExcelWriter(self.file_path)
-                break
-        self.gls_properties = {}
+        # for simulation_number in range(10):
+        #     self.file_path = f"project/back/Save_simulation/{username}_simulation_{simulation_number}.xls"
+        #     if os.path.exists(self.file_path):
+        #         print("File exists", username)
+        #     else:
+        #         print(f"create {self.file_path}")
+        #         self.writer = pd.ExcelWriter(self.file_path)
+        #         break
+        # self.gls_properties = {}
 
     def Handel_UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
 
-    def Handel_Buttons(self):
+    def Handel_Buttons(self, username):
+        self.username = username
 
         self.history_tab.clicked.connect(self.History_Tab)
         self.simulation_tab.clicked.connect(self.Simulation_Tab)
+        self.simulation_tab.setEnabled(False)
         self.setting_tab.clicked.connect(self.setting_Tab)
         self.classic.clicked.connect(self.calasic_theme)
         self.dark_blue.clicked.connect(self.dark_blue_theme)
         self.mnjaromix.clicked.connect(self.mnjaromix_theme)
         self.Earth.clicked.connect(self.Earth_theme)
-        self.open_simulation.clicked.connect(self.open_file_dialog)
+        self.open_simulation.clicked.connect(self.open_simulations)
+        self.insert_file.clicked.connect(self.open_file_dialog)
         self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
         self.propertice_next.setEnabled(False)
+        self.open_new_simulation.clicked.connect(self.Simulation_Tab)
 
         self.specific_heat_next.clicked.connect(
             lambda: self.tabWidget_2.setCurrentIndex(2))
@@ -315,10 +308,52 @@ class MainApp(QMainWindow, ui):
         self.bellow_table.cellChanged.connect(
             lambda: bellow_get_data(self))
 
+    def update_combobox(self, username):
+
+        # self.comboBox.setCurrentIndex(0)
+
+        # Example usage
+        directory = "project/back/Save_simulation"
+        filename = username
+
+        file_path = self.find_file(directory, filename)
+
+    def find_file(self, directory, filename):
+        self.comboBox.clear()
+        for root, dirs, files in os.walk(directory):
+            count = 0
+            for file in files:
+                if filename in file:
+                    file_path = os.path.join(root, file)
+                    self.comboBox.addItem(file)
+                    creation_date = self.get_creation_date(file_path)
+                    file_item = QTableWidgetItem(file)
+                    file_item.setTextAlignment(Qt.AlignCenter)
+                    creation_date_item = QTableWidgetItem(creation_date)
+                    creation_date_item.setTextAlignment(Qt.AlignCenter)
+
+                    self.tableWidget.setItem(count, 0, file_item)
+                    self.tableWidget.setItem(count, 1, creation_date_item)
+                    self.tableWidget.setEditTriggers(
+                        QAbstractItemView.NoEditTriggers)
+
+                    count += 1
+
     def open_simulations(self):
+        self.meesage_error((118, 186, 153), 'calculating simulation ...')
         file_path = self.comboBox.currentText()
         run = Run()
         run.run(f"project/back/Save_simulation/{file_path}")
+
+    def get_creation_date(self, file_path):
+        if os.path.exists(file_path):
+            stat_info = os.stat(file_path)
+            creation_timestamp = stat_info.st_ctime
+            creation_date = datetime.datetime.fromtimestamp(creation_timestamp)
+            formatted_date = creation_date.strftime("%Y-%m-%d %H:%M:%S")
+            return formatted_date
+        else:
+            return None
 
     def specific_heat_gas_Tab(self):
 
@@ -328,6 +363,7 @@ class MainApp(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(0)
 
     def Simulation_Tab(self):
+        self.simulation_tab.setEnabled(True)
         self.tabWidget.setCurrentIndex(1)
         text = self.gas_propertice_input.text()
 
@@ -431,6 +467,8 @@ class MainApp(QMainWindow, ui):
     def simulation(self):
 
         try:
+            self.meesage_error((183, 4, 4), 'calculating simulation ...')
+            print('run sim')
             run = Run()
             # Call the run() method and provide the required arguments
             run.run(self.file_path)
@@ -451,7 +489,51 @@ class MainApp(QMainWindow, ui):
         file_dialog = QFileDialog()
         file_path, _ = file_dialog.getOpenFileName(self, "Open File")
 
-        print("Selected file:", file_path)
+        if '.xls' in file_path:
+
+            self.file_path = file_path
+            source_path = file_path
+            destination_folder = "project/back/Save_simulation"
+
+            for simulation_number in range(10):
+                path = f"project/back/Save_simulation/{self.username}_simulation_{simulation_number}.xls"
+                new_file_name = f"{self.username}_simulation_{simulation_number}.xls"
+                if os.path.exists(path):
+                    print("File exists", self.username)
+                else:
+                    self.copy_and_rename_file(
+                        source_path, destination_folder, new_file_name)
+                    self.update_combobox(self.username)
+                    print("Selected file:", file_path)
+                    break
+        else:
+            self.meesage_error((183, 4, 4), 'you must insert an exel file !')
+
+    def copy_and_rename_file(self, source_path, destination_folder, new_file_name):
+        # Extract the filename from the source path
+        print('OK')
+        source_folder, source_filename = os.path.split(source_path)
+
+        # Construct the destination path with the new filename
+        destination_path = os.path.join(destination_folder, new_file_name)
+
+        # Copy the file to the destination folder with the new filename
+        shutil.copy2(source_path, destination_path)
+
+        # Rename the copied file to the new filename
+        renamed_destination_path = os.path.join(
+            destination_folder, new_file_name)
+        os.rename(destination_path, renamed_destination_path)
+
+        print("File copied and renamed successfully!")
+
+    def meesage_error(self, color, message):
+        print('ooladfa')
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         QColor(*color))
+        self.statusBar().setPalette(palette)
+        self.statusBar().showMessage(message)
 
 
 if __name__ == '__main__':
