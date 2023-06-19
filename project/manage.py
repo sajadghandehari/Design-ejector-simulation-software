@@ -46,9 +46,8 @@ class Login(QMainWindow, login):
                 print('OK')
                 self.login(username)
             else:
-                self.label_2.setText(
-                    "Your Username or Password is not correct !")
-                self.label_2.setStyleSheet("color: red; font-size: 12px;")
+                self.meesage_error(
+                    (183, 4, 4), "Your Username or Password is not correct !")
 
     def Handel_Buttons(self):
 
@@ -74,6 +73,14 @@ class Login(QMainWindow, login):
         self.window.show()
         app.exec_()
 
+    def meesage_error(self, color, message):
+
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         QColor(*color))
+        self.statusBar().setPalette(palette)
+        self.statusBar().showMessage(message)
+
 
 class CreateUser(QMainWindow, create_user):
     def __init__(self):
@@ -88,6 +95,7 @@ class CreateUser(QMainWindow, create_user):
     def Handel_Buttons(self):
 
         self.CreateButton.clicked.connect(self.confing_info)
+        self.LoginpageButton.clicked.connect(self.login_page)
 
     def confing_info(self):
 
@@ -103,19 +111,18 @@ class CreateUser(QMainWindow, create_user):
         for user in Users[1:]:
             user_from_db.append(user[0])
 
-        palette = self.statusBar().palette()
-        palette.setColor(self.statusBar().foregroundRole(),
-                         Qt.red)  # Set the text color to red
-        self.statusBar().setPalette(palette)
-
         if username in user_from_db:
-            self.statusBar().showMessage('This username has already been used!')
+            self.meesage_error(
+                (183, 4, 4), 'This username has already been used!')
         elif len(password) < 8:
-            self.statusBar().showMessage('Your password must be more than 8 character!')
+            self.meesage_error(
+                (183, 4, 4), 'Your password must be more than 8 character!')
         elif password != confirm_password:
-            self.statusBar().showMessage('Your password and confirm Password must be equal!')
+            self.meesage_error(
+                (183, 4, 4), 'Your password and confirm Password must be equal!')
         elif '@gmail.com' not in gmail:
-            self.statusBar().showMessage('You must enter valid email address!')
+            self.meesage_error(
+                (183, 4, 4), 'You must enter valid email address!')
         else:
 
             df = pandas.read_excel(
@@ -124,9 +131,7 @@ class CreateUser(QMainWindow, create_user):
             data = [
                 [username, password, gmail]
             ]
-
             new_df = df.append(pandas.DataFrame(data), ignore_index=True)
-
             # Save the updated DataFrame to the Excel file
             new_df.to_excel('project/back/User_Information.xlsx',
                             header=None, index=False)
@@ -138,6 +143,21 @@ class CreateUser(QMainWindow, create_user):
         self.hide()
         self.window.show()
         app.exec_()
+
+    def login_page(self):
+        self.window = Login()
+        self.window.setFixedSize(600, 300)
+        self.hide()
+        self.window.show()
+        app.exec_()
+
+    def meesage_error(self, color, message):
+
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         QColor(*color))
+        self.statusBar().setPalette(palette)
+        self.statusBar().showMessage(message)
 
 
 class RecoveryPassword(QMainWindow, recovery_pass):
@@ -158,16 +178,13 @@ class RecoveryPassword(QMainWindow, recovery_pass):
     def recovery_pass(self):
 
         username = self.username.text()
-        palette = self.statusBar().palette()
-        palette.setColor(self.statusBar().foregroundRole(),
-                         Qt.red)  # Set the text color to red
-        self.statusBar().setPalette(palette)
-
-        user_from_db = []
 
         Users = pandas.read_excel(
             'project/back/User_Information.xlsx', header=None).values
         df = pd.read_excel('project/back/User_Information.xlsx')
+
+        if username not in Users[1:]:
+            self.meesage_error((183, 4, 4), "Your Username not found !")
 
         for user in Users[1:]:
             if user[0] == username:
@@ -182,8 +199,6 @@ your new password : {random_number}"""
 
                 send_email(subject, body, sender_email,
                            recipients, password)
-                # Users['password'] = Users['password'].replace(
-                #     str(user[1]), str(random_number))
 
                 # Save the modified DataFrame back to the Excel file
                 df['password'] = df['password'].replace(user[1], random_number)
@@ -191,9 +206,18 @@ your new password : {random_number}"""
 
     def login_page(self):
         self.window = Login()
+        self.window.setFixedSize(600, 300)
         self.hide()
         self.window.show()
         app.exec_()
+
+    def meesage_error(self, color, message):
+
+        palette = self.statusBar().palette()
+        palette.setColor(self.statusBar().foregroundRole(),
+                         QColor(*color))
+        self.statusBar().setPalette(palette)
+        self.statusBar().showMessage(message)
 
 
 class MainApp(QMainWindow, ui):
@@ -340,7 +364,7 @@ class MainApp(QMainWindow, ui):
                     count += 1
 
     def open_simulations(self):
-        self.meesage_error((118, 186, 153), 'calculating simulation ...')
+
         file_path = self.comboBox.currentText()
         run = Run()
         run.run(f"project/back/Save_simulation/{file_path}")
@@ -395,17 +419,13 @@ class MainApp(QMainWindow, ui):
         self.statusBar().setPalette(palette)
 
         if not value.text().isdigit():
-            self.statusBar().showMessage(f'{name} must be integer!')
+            self.meesage_error((183, 4, 4), f'{name} must be integer!')
             value.setText('')
             if name in self.gls_properties:
                 self.gls_properties.pop(name)
 
         else:
-            palette.setColor(self.statusBar().foregroundRole(),
-                             QColor(82, 115, 77))
-            self.statusBar().setPalette(palette)
-            self.gls_properties[name] = value.text()
-            self.statusBar().showMessage(f'save {name} successfuly')
+            self.meesage_error((183, 4, 4), f'save {name} successfuly')
             if len(self.gls_properties) == 13:
                 self.gls_properties_next.setEnabled(True)
                 self.gls_properties_next.setStyleSheet(
@@ -467,8 +487,7 @@ class MainApp(QMainWindow, ui):
     def simulation(self):
 
         try:
-            self.meesage_error((183, 4, 4), 'calculating simulation ...')
-            print('run sim')
+
             run = Run()
             # Call the run() method and provide the required arguments
             run.run(self.file_path)
@@ -528,7 +547,6 @@ class MainApp(QMainWindow, ui):
         print("File copied and renamed successfully!")
 
     def meesage_error(self, color, message):
-        print('ooladfa')
         palette = self.statusBar().palette()
         palette.setColor(self.statusBar().foregroundRole(),
                          QColor(*color))
@@ -539,7 +557,7 @@ class MainApp(QMainWindow, ui):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = MainApp('Sajad')
+    # window = Login()
+    window.setFixedSize(1268, 642)
     window.show()
     app.exec_()
-
-"C:/Users/Sajad/Desktop/pic.avif"

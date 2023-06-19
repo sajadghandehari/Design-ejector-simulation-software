@@ -92,7 +92,7 @@ color:   rgb(21,76,121);
    <widget class="QPushButton" name="CreateButton">
     <property name="geometry">
      <rect>
-      <x>240</x>
+      <x>316</x>
       <y>270</y>
       <width>120</width>
       <height>28</height>
@@ -236,6 +236,29 @@ border-radius:5px;
      <string>Gmail</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="LoginpageButton">
+    <property name="geometry">
+     <rect>
+      <x>184</x>
+      <y>270</y>
+      <width>120</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 75 8pt &quot;Calibri (Body)&quot;;
+background-color: rgb(60,179,113);
+color: rgb(255, 255, 255);
+border-radius:10px;
+
+
+
+</string>
+    </property>
+    <property name="text">
+     <string>back to login page</string>
+    </property>
+   </widget>
    <zorder>label_4</zorder>
    <zorder>create_username</zorder>
    <zorder>create_password</zorder>
@@ -246,6 +269,7 @@ border-radius:5px;
    <zorder>label_3</zorder>
    <zorder>label_5</zorder>
    <zorder>create_gmail</zorder>
+   <zorder>LoginpageButton</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

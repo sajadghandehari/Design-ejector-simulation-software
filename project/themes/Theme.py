@@ -77,13 +77,19 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
     self.bellow_input.setStyleSheet(
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 75 8pt 'Calibri (Body)';")
+    self.comboBox.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 87 9pt 'Roboto Black';;")
+    self.insert_file.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:4px;font: 87 9pt 'Roboto Black';")
 
     if color_D == 'rgb(248, 240, 223)':
         color_D = 'rgb(34, 40, 49)'
 
-    label_ranges = [(2, 10), (18, 24), (37, 41)]
+    label_ranges = [(2, 10), (15, 24), (37, 41)]
     for start, end in label_ranges:
         for i in range(start, end):
+            if i == 17:
+                continue
             label = getattr(self, f"label_{i}")
             label.setStyleSheet(
                 f"color:{color_D};font: 87 9pt 'Roboto Black';")

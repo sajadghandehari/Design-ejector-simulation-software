@@ -120,7 +120,7 @@ color: #000000;
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <property name="tabBarAutoHide">
      <bool>false</bool>
@@ -200,7 +200,7 @@ QHeaderView::section {
        <number>2</number>
       </property>
       <attribute name="horizontalHeaderVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -1917,6 +1917,29 @@ border-radius:5px;
        </property>
        <property name="text">
         <string>Set new Password :</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="LoginButton">
+       <property name="geometry">
+        <rect>
+         <x>630</x>
+         <y>150</y>
+         <width>200</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 87 9pt &quot;Roboto Black&quot;;
+background-color: rgb(121, 180, 183);
+color: rgb(34, 40, 49);
+border-radius:5px;
+
+
+
+</string>
+       </property>
+       <property name="text">
+        <string>Set information</string>
        </property>
       </widget>
      </widget>
