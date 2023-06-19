@@ -65,12 +65,14 @@ class Login(QMainWindow, login):
     def recovery_password(self):
         self.window = RecoveryPassword()
         self.hide()
+        self.window.setFixedSize(600, 237)
         self.window.show()
         app.exec_()
 
     def create_user(self):
         self.window = CreateUser()
         self.hide()
+        self.window.setFixedSize(600, 350)
         self.window.show()
         app.exec_()
 
@@ -205,6 +207,8 @@ your new password : {random_number}"""
                 # Save the modified DataFrame back to the Excel file
                 df['password'] = df['password'].replace(user[1], random_number)
                 df.to_excel('project/back/User_Information.xlsx', index=False)
+                self.meesage_error(
+                    (54, 174, 124), 'we sent a new password to your gmail.')
 
     def login_page(self):
         self.window = Login()
@@ -648,6 +652,6 @@ class MainApp(QMainWindow, ui):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Login()
-    window.setFixedSize(1268, 642)
+    window.setFixedSize(600, 300)
     window.show()
     app.exec_()
