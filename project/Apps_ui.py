@@ -106,7 +106,7 @@ class Ui_mainwindow(object):
         item = QtWidgets.QTableWidgetItem()
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.tableWidget.setItem(0, 0, item)
-        self.tableWidget.horizontalHeader().setVisible(False)
+        self.tableWidget.horizontalHeader().setVisible(True)
         self.tableWidget.horizontalHeader().setCascadingSectionResizes(False)
         self.tableWidget.horizontalHeader().setDefaultSectionSize(449)
         self.tableWidget.horizontalHeader().setMinimumSectionSize(49)
@@ -894,9 +894,9 @@ class Ui_mainwindow(object):
         self.label_13.setStyleSheet("color:  rgb(34, 40, 49);\n"
 " ")
         self.label_13.setObjectName("label_13")
-        self.LoginButton = QtWidgets.QPushButton(self.groupBox)
-        self.LoginButton.setGeometry(QtCore.QRect(630, 150, 200, 32))
-        self.LoginButton.setStyleSheet("font: 87 9pt \"Roboto Black\";\n"
+        self.set_information = QtWidgets.QPushButton(self.groupBox)
+        self.set_information.setGeometry(QtCore.QRect(630, 150, 200, 32))
+        self.set_information.setStyleSheet("font: 87 9pt \"Roboto Black\";\n"
 "background-color: rgb(121, 180, 183);\n"
 "color: rgb(34, 40, 49);\n"
 "border-radius:5px;\n"
@@ -904,7 +904,7 @@ class Ui_mainwindow(object):
 "\n"
 "\n"
 "")
-        self.LoginButton.setObjectName("LoginButton")
+        self.set_information.setObjectName("set_information")
         self.tabWidget.addTab(self.tab_8, "")
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
@@ -923,7 +923,7 @@ class Ui_mainwindow(object):
         mainwindow.setMenuBar(self.menubar)
 
         self.retranslateUi(mainwindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(mainwindow)
 
@@ -1023,7 +1023,7 @@ class Ui_mainwindow(object):
         self.create_password.setPlaceholderText(_translate("mainwindow", "Password"))
         self.label_12.setText(_translate("mainwindow", "Set new Gmail :"))
         self.label_13.setText(_translate("mainwindow", "Set new Password :"))
-        self.LoginButton.setText(_translate("mainwindow", "Set information"))
+        self.set_information.setText(_translate("mainwindow", "Set information"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_8), _translate("mainwindow", "setting"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_9), _translate("mainwindow", "Page"))
 import icons_rc

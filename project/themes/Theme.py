@@ -81,6 +81,8 @@ def Simulation_page_theme(self, color_A, color_B, color_C, color_D):
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:5px;font: 87 9pt 'Roboto Black';;")
     self.insert_file.setStyleSheet(
         f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:4px;font: 87 9pt 'Roboto Black';")
+    self.set_information.setStyleSheet(
+        f"background-color:{color_C};color: rgb(34, 40, 49);border-radius:4px;font: 87 9pt 'Roboto Black';")
 
     if color_D == 'rgb(248, 240, 223)':
         color_D = 'rgb(34, 40, 49)'

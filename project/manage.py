@@ -58,6 +58,7 @@ class Login(QMainWindow, login):
     def login(self, username):
         self.window = MainApp(username)
         self.hide()
+        self.window.setFixedSize(1268, 642)
         self.window.show()
         app.exec_()
 
@@ -141,6 +142,7 @@ class CreateUser(QMainWindow, create_user):
     def create_user(self, username):
         self.window = MainApp(username)
         self.hide()
+        self.window.setFixedSize(1268, 642)
         self.window.show()
         app.exec_()
 
@@ -230,18 +232,8 @@ class MainApp(QMainWindow, ui):
         self.setWindowIcon(QIcon('project/python.png'))
         self.calasic_theme()
         self.update_combobox(username)
-
-        print(self.username)
-
-        # for simulation_number in range(10):
-        #     self.file_path = f"project/back/Save_simulation/{username}_simulation_{simulation_number}.xls"
-        #     if os.path.exists(self.file_path):
-        #         print("File exists", username)
-        #     else:
-        #         print(f"create {self.file_path}")
-        #         self.writer = pd.ExcelWriter(self.file_path)
-        #         break
-        # self.gls_properties = {}
+        self.Users = pandas.read_excel(
+            'project/back/User_Information.xlsx', header=None).values
 
     def Handel_UI_Changes(self):
         self.tabWidget.tabBar().setVisible(False)
@@ -262,6 +254,9 @@ class MainApp(QMainWindow, ui):
         self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
         self.propertice_next.setEnabled(False)
         self.open_new_simulation.clicked.connect(self.Simulation_Tab)
+        self.set_information.clicked.connect(self.change_information)
+        self.label_10.setText(
+            f'Hi {username}, you can change your information here')
 
         self.specific_heat_next.clicked.connect(
             lambda: self.tabWidget_2.setCurrentIndex(2))
@@ -332,18 +327,95 @@ class MainApp(QMainWindow, ui):
         self.bellow_table.cellChanged.connect(
             lambda: bellow_get_data(self))
 
+    def change_information(self):
+        username = self.create_username.text()
+        gmail = self.create_gmail.text()
+        password = self.create_password.text()
+        print(username)
+        user_from_db = []
+
+        for user in self.Users[1:]:
+            user_from_db.append(user[0])
+
+        if username != '':
+            if username in user_from_db:
+                self.meesage_error(
+                    (183, 4, 4), 'This username has already been used!')
+                self.create_username.setText('')
+            else:
+
+                for user in self.Users[1:]:
+                    self.create_username.setText('')
+                    if user[0] == self.username:
+                        df = pd.read_excel(
+                            'project/back/User_Information.xlsx')
+                        df['username'] = df['username'].replace(
+                            user[0], username)
+                        df.to_excel(
+                            'project/back/User_Information.xlsx', index=False)
+                        self.meesage_error(
+                            (54, 174, 124), 'Your username changed successfully !')
+                        self.update_combobox(username)
+                        self.label_10.setText(
+                            f'Hi {username}, you can change your information here')
+
+                        for simulation_number in range(100):
+                            path = f"project/back/Save_simulation/{self.username}_simulation_{simulation_number}.xls"
+                            new_file_name = f"project/back/Save_simulation/{username}_simulation_{simulation_number}.xls"
+                            if os.path.exists(path):
+                                os.rename(path, new_file_name)
+
+                        self.login(username)
+                        self.username = username
+
+        if gmail != '':
+            if '@gmail.com' not in gmail:
+                self.create_gmail.setText('')
+                self.meesage_error(
+                    (183, 4, 4), 'You must enter valid email address!')
+            else:
+                self.create_gmail.setText('')
+                for user in self.Users[1:]:
+                    if user[0] == self.username:
+                        df = pd.read_excel(
+                            'project/back/User_Information.xlsx')
+                        df['gmail'] = df['gmail'].replace(
+                            user[2], gmail)
+                        df.to_excel(
+                            'project/back/User_Information.xlsx', index=False)
+                        self.meesage_error(
+                            (54, 174, 124), 'Your gmail changed successfully !')
+
+        if password != '':
+            if len(password) < 8:
+                self.create_password.setText('')
+                self.meesage_error(
+                    (183, 4, 4), 'Your password must be more than 8 character!')
+            else:
+                for user in self.Users[1:]:
+                    if user[0] == self.username:
+                        df = pd.read_excel(
+                            'project/back/User_Information.xlsx')
+                        df['password'] = df['password'].replace(
+                            user[1], password)
+                        df.to_excel(
+                            'project/back/User_Information.xlsx', index=False)
+                self.meesage_error(
+                    (54, 174, 124), 'Your password changed successfully !')
+                self.create_password.setText('')
+
     def update_combobox(self, username):
 
-        # self.comboBox.setCurrentIndex(0)
-
-        # Example usage
         directory = "project/back/Save_simulation"
         filename = username
 
         file_path = self.find_file(directory, filename)
+        print('OK')
 
     def find_file(self, directory, filename):
         self.comboBox.clear()
+        self.tableWidget.clearContents()
+
         for root, dirs, files in os.walk(directory):
             count = 0
             for file in files:
@@ -384,9 +456,20 @@ class MainApp(QMainWindow, ui):
         self.tabWidget_2.setCurrentIndex(1)
 
     def History_Tab(self):
+        self.meesage_error((0, 0, 0), '')
         self.tabWidget.setCurrentIndex(0)
 
     def Simulation_Tab(self):
+        for simulation_number in range(100):
+            self.file_path = f"project/back/Save_simulation/{self.username}_simulation_{simulation_number}.xls"
+            if os.path.exists(self.file_path):
+                print("File exists", self.username)
+            else:
+                print(f"create {self.file_path}")
+                self.writer = pd.ExcelWriter(self.file_path)
+                break
+        self.gls_properties = {}
+        self.meesage_error((0, 0, 0), '')
         self.simulation_tab.setEnabled(True)
         self.tabWidget.setCurrentIndex(1)
         text = self.gas_propertice_input.text()
@@ -410,6 +493,7 @@ class MainApp(QMainWindow, ui):
             self.bellow_table.setRowCount(int(row_count))
 
     def setting_Tab(self):
+        self.meesage_error((0, 0, 0), '')
         self.tabWidget.setCurrentIndex(2)
 
     def get_gls_properties(self, name, value):
@@ -448,7 +532,6 @@ class MainApp(QMainWindow, ui):
 
     def Earth_theme(self):
 
-        # earth
         color_A = 'rgb(64, 81, 59)'
         color_B = 'rgb(157, 192, 139)'
         color_C = 'rgb(96, 153, 102)'
@@ -481,6 +564,7 @@ class MainApp(QMainWindow, ui):
         History_page_theme(self, color_A, color_B, color_C, color_D)
 
     def tab(self):
+        self.meesage_error((0, 0, 0), '')
         self.tabWidget.setTabEnabled(1, False)
         pass
 
@@ -514,7 +598,7 @@ class MainApp(QMainWindow, ui):
             source_path = file_path
             destination_folder = "project/back/Save_simulation"
 
-            for simulation_number in range(10):
+            for simulation_number in range(100):
                 path = f"project/back/Save_simulation/{self.username}_simulation_{simulation_number}.xls"
                 new_file_name = f"{self.username}_simulation_{simulation_number}.xls"
                 if os.path.exists(path):
@@ -530,7 +614,7 @@ class MainApp(QMainWindow, ui):
 
     def copy_and_rename_file(self, source_path, destination_folder, new_file_name):
         # Extract the filename from the source path
-        print('OK')
+
         source_folder, source_filename = os.path.split(source_path)
 
         # Construct the destination path with the new filename
@@ -553,11 +637,17 @@ class MainApp(QMainWindow, ui):
         self.statusBar().setPalette(palette)
         self.statusBar().showMessage(message)
 
+    def login(self, username):
+        self.window = MainApp(username)
+        self.hide()
+        self.window.setFixedSize(1268, 642)
+        self.window.show()
+        app.exec_()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainApp('Sajad')
-    # window = Login()
+    window = Login()
     window.setFixedSize(1268, 642)
     window.show()
     app.exec_()

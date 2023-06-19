@@ -11,6 +11,3 @@ def send_email(subject, body, sender, recipients, password):
         smtp_server.login(sender, password)
         smtp_server.sendmail(sender, recipients, msg.as_string())
     print("Message sent!")
-
-
-# Example usage
