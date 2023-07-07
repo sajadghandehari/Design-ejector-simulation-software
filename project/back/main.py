@@ -7,6 +7,10 @@ import numpy as np
 
 
 class Run():
+    def __init__(self, progressBar):
+
+        # print(progressBar.value())
+        self.progressBar = progressBar
 
     def run(self, excle_address):
 
@@ -148,6 +152,10 @@ class Run():
             orifice_d = midata[1, 8]
             eps10 = 1
             print('ij: ', ij)
+            self.current_value = self.progressBar.value()
+            if self.current_value < 100:
+                self.progressBar.setValue(self.current_value + 3)
+
             while (eps10 > 0.1):
                 teta = teta * 0.0174
                 map = 0
@@ -211,6 +219,10 @@ class Run():
                 fl2[ij] = ff2
                 eps10 = abs(temp_grad5 - temp_grad1)
                 temp_grad[ij] = temp_grad5
+
+            self.current_value = self.progressBar.value()
+            if self.current_value < 100:
+                self.progressBar.setValue(self.current_value + 3)
 
             if pvo[ij] > p_inj[ij]:
                 print(p_inj[ij])

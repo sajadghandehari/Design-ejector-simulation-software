@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_mainwindow(object):
     def setupUi(self, mainwindow):
         mainwindow.setObjectName("mainwindow")
-        mainwindow.resize(1268, 642)
+        mainwindow.resize(1268, 661)
         mainwindow.setStyleSheet("background-color: rgb(254, 251, 243);\n"
 " \n"
 "")
@@ -909,10 +909,29 @@ class Ui_mainwindow(object):
         self.tab_9 = QtWidgets.QWidget()
         self.tab_9.setObjectName("tab_9")
         self.tabWidget.addTab(self.tab_9, "")
+        self.progressBar = QtWidgets.QProgressBar(self.centralwidget)
+        self.progressBar.setGeometry(QtCore.QRect(150, 563, 141, 23))
+        self.progressBar.setStyleSheet("QProgressBar {\n"
+"    background-color: #E0E0E0;\n"
+"    color: #FFFFFF;\n"
+"    border: 1px solid;\n"
+"    height: 10px;\n"
+"    text-align: center;\n"
+"    border-radius: 5px; \n"
+"}\n"
+"\n"
+"QProgressBar::chunk {\n"
+"    background-color: #54B435;\n"
+"    width: 2px;\n"
+"}\n"
+"")
+        self.progressBar.setProperty("value", 0)
+        self.progressBar.setObjectName("progressBar")
         self.setting_tab.raise_()
         self.tabWidget.raise_()
         self.history_tab.raise_()
         self.simulation_tab.raise_()
+        self.progressBar.raise_()
         mainwindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(mainwindow)
         self.statusbar.setObjectName("statusbar")

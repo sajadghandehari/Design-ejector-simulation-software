@@ -257,10 +257,11 @@ class MainApp(QMainWindow, ui):
         self.insert_file.clicked.connect(self.open_file_dialog)
         self.propertice_next.clicked.connect(self.specific_heat_gas_Tab)
         self.propertice_next.setEnabled(False)
-        self.open_new_simulation.clicked.connect(self.Simulation_Tab)
+        self.open_new_simulation.clicked.connect(self.new_Simulation)
         self.set_information.clicked.connect(self.change_information)
         self.label_10.setText(
             f'Hi {username}, you can change your information here')
+        self.progressBar.setVisible(False)
 
         self.specific_heat_next.clicked.connect(
             lambda: self.tabWidget_2.setCurrentIndex(2))
@@ -440,10 +441,11 @@ class MainApp(QMainWindow, ui):
                     count += 1
 
     def open_simulations(self):
-
+        self.progressBar.setVisible(True)
         file_path = self.comboBox.currentText()
-        run = Run()
+        run = Run(self.progressBar)
         run.run(f"project/back/Save_simulation/{file_path}")
+        self.progressBar.setVisible(False)
 
     def get_creation_date(self, file_path):
         if os.path.exists(file_path):
@@ -464,6 +466,12 @@ class MainApp(QMainWindow, ui):
         self.tabWidget.setCurrentIndex(0)
 
     def Simulation_Tab(self):
+
+        self.tabWidget.setCurrentIndex(1)
+        text = self.gas_propertice_input.text()
+
+    def new_Simulation(self):
+
         for simulation_number in range(100):
             self.file_path = f"project/back/Save_simulation/{self.username}_simulation_{simulation_number}.xls"
             if os.path.exists(self.file_path):
@@ -651,7 +659,7 @@ class MainApp(QMainWindow, ui):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = Login()
-    window.setFixedSize(600, 300)
+    window = MainApp('Sajad')
+    # window.setFixedSize(600, 300)
     window.show()
     app.exec_()
