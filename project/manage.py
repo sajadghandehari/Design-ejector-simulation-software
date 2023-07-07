@@ -659,7 +659,7 @@ class MainApp(QMainWindow, ui):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    window = MainApp('Sajad')
-    # window.setFixedSize(600, 300)
+    window = Login()
+    window.setFixedSize(600, 300)
     window.show()
     app.exec_()
