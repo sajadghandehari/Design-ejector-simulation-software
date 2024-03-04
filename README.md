@@ -1,3 +1,31 @@
+# Ejector simulation software
+
+<div align="center">
+  <a href="#">
+    <img src="project/icon/python.png" alt="Python" width="110">
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="#">
+    <img src="project/icon/qt.png" alt="Qt" width="120">
+  </a>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>  
+  <br>
+  <br>
+</h1>
+
+<h4 align="center">A minimal desktop app based on python</a>.</h4>
+
+<p align="center">
+  <a ><img src="https://img.shields.io/badge/Python-3.8-1D5?style=flat&logo=sa&logoColor=1D5B79&labelColor=176B87&color=637E76"></a>
+  <a >
+      <img src="https://img.shields.io/badge/Pyqt-5-1D5?style=flat&logo=sa&logoColor=1D5B79&labelColor=219C90&color=EE9322">
+  </a>
+  <a>
+    <img src="https://img.shields.io/badge/pyinstaller-6.4-1D5?style=flat&logo=sa&logoColor=1D5B79&labelColor=3A8891&color=F2DEBA">
+  </a>
+</p>
+
 # Abstract
 
 Ejector is one of the widely used devices in the industry, which is used in a wide range of oil and gas, aerospace, propulsion production, fuel cell, refrigeration systems and solar power technology industries. Ejector is a process pressure injection device that takes advantage of the effects of variable pressure flow.
